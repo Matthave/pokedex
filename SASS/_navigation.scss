@@ -1,33 +1,64 @@
 .navWrapper{
     width:100%;
-    border:1px solid red;
-    height: 600px;
+    min-width: 350px;
+    height: 100vh;
+    min-height: 825px;
+    background-color: rgba(0,0,0,0.85);
+    transition: 0.3s ;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+
+    &--hide{
+        height: 75px;
+        min-height: 0px;
+    }
     
     @include mq(medium){
-        height: 1000px;
+        min-width: 705px;
+        min-height: 975px;
+
+        &--hide{
+            height: 75px;
+            min-height: 0px;
+        }
     }
 }
 
 .nav{
     position: relative;
     z-index: 1;
-    top:150px;
 
     width:300px;
     height: 300px;
+    transform-origin: center;
     border: 20px solid $pokeballColor;
     border-radius: 50%;
     animation: colorChangeBorder 0.3s 2.3s linear forwards;
+    transition: 0.3s;
+
+    &--hide{
+        width:50px;
+        height: 50px;
+        border:2px solid $pokeballColor;
+    }
+
+    &--active{
+        border-color: #fff !important;
+    }
 
     @include mq(medium){
-        top:200px;
         width:550px;
         height: 550px;
         border: 30px solid $pokeballColor;
+
+        &--hide{
+            width:50px;
+            height: 50px;
+            border:2px solid $pokeballColor;
+        }
     }
 
     &__line{
@@ -44,8 +75,24 @@
         animation-fill-mode:forwards;
         z-index: 0;
 
+        &--active{
+            background-color: #fff !important;
+        }
+
+        &--hide{
+            height: 3px;
+        }
+
         @include mq(medium){
             height: 30px;
+
+            &--hide{
+                height: 3px;
+            }
+
+            &--active{
+                background-color: #fff !important;
+            }
         }
     }
 
@@ -64,6 +111,13 @@
         font-size: 10px;
         color:#fff;
         transition: 0.2s;
+
+        &--hide{
+            top:50% !important;
+            left:50% !important;
+            opacity: 0;
+            box-shadow: none;
+        }
 
         @include mq(medium){
             width:130px;
@@ -140,6 +194,10 @@
             top:calc(100% + 90px);
             box-shadow: 0px 15px 10px 1px rgba(0,0,0,0.65);
         }
+
+        &--hide{
+            top:50%;
+        }
         @include mq(medium){
             top:calc(100% + 130px);
 
@@ -147,6 +205,8 @@
                 top:calc(100% + 140px);
                 box-shadow: 0px 15px 10px 1px rgba(0,0,0,0.65);
             }
+            
+            
         }
     }
 }
@@ -164,9 +224,19 @@
     transform-style: preserve-3d;
     z-index: 1;
 
+    &--hide{
+        width: 50px;
+        height: 50px;
+    }
+
     @include mq(medium){
         width:550px;
         height: 550px;
+
+        &--hide{
+            width: 50px;
+            height: 50px;
+        }
     }
     
 
@@ -184,11 +254,30 @@
         animation: circleTransition 0.3s 1s linear, colorChangeBorder 0.3s 2.3s linear forwards ;
         animation-fill-mode: forwards;
 
+        &--hide{
+            width:15px;
+            height: 15px;
+            border:2px solid #fff;
+        }
+
+        &--active{
+            border-color: #fff !important;
+        }
 
         @include mq(medium){
             width: 130px;
             height: 130px;
             border:20px solid #fff;
+
+            &--hide{
+                width:15px;
+                height: 15px;
+                border:2px solid #fff;
+            }
+
+            &--active{
+                border-color: #fff !important;
+            }
         }
     }
 }
@@ -209,7 +298,7 @@ transition: 0.3s;
 };
 
 @keyframes circleTransition {
-    100%{background-color: #878787;}
+    100%{background-color: #141414;}
 }
 
 @keyframes fullWidth {
@@ -221,9 +310,9 @@ transition: 0.3s;
 }
 
 @keyframes colorChangeBorder{
-    100%{border-color: rgba(0,0,0,0.25);}
+    100%{border-color: rgba(255,255,255,0.25);}
 }
 
 @keyframes colorChangeBg{
-    100%{background-color: rgba(0,0,0,0.25);}
+    100%{background-color: rgba(255,255,255,0.25);}
 }

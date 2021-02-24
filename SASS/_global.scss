@@ -11,6 +11,8 @@ body{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
+    min-height: 825px;
 }
 
 .app{
@@ -43,6 +45,10 @@ cursor: none;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
+
+&--hide{
+  height: 75px;
+}
 
   &__type{
     flex-grow: 1;
