@@ -8,6 +8,7 @@
 body{
     position: relative;
     background-image: url("../images/bg_white.svg");
+    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -22,7 +23,7 @@ body{
 }
 
 .cover{
-position: absolute;
+position: fixed;
 top:0;
 left:0;
 width:100%;
@@ -91,7 +92,6 @@ justify-content: center;
   }
   ::-webkit-scrollbar-thumb {
     background: #000;
-    border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #F73636;

@@ -16,3 +16,15 @@ xxxlarge: (min-width: 1650px),
     }
   }
 } 
+
+
+@mixin section {
+  display: flex;
+
+  width:90%;
+  max-width: 1200px;
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 10px 25px;
+  margin-top: 25px;
+}
