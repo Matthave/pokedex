@@ -23,10 +23,9 @@ export class GeneratePokemonToDOM{
     constructor(allPokemon:Element[]){
             this.generatePokemonInDOM(allPokemon);
     }
-
+//Here goes before prepared array of all pokemons (part one by one not all in one) DOM isn't clean here, so every part goes to the end of container
    generatePokemonInDOM = (allPokemon: Element[]) => {
         allPokemon.forEach((pokemon: any, index:number)=>{
-            if(index < 12){
                 const newCard = document.createElement('div');
                 const pokemonId = document.createElement('p');
                 const pokemonName = document.createElement('p');
@@ -50,15 +49,15 @@ export class GeneratePokemonToDOM{
                     pokemonImg.setAttribute("class","pokemon__questionMark");
                     newCard.appendChild(pokemonImg);
                 }
-    
+    //Add ID of pokemon to every container into card
                 if(pokemon.id < 10) pokemonId.textContent = `#00${pokemon.id}`;
                 if(pokemon.id >= 10 && index < 100) pokemonId.textContent = `#0${pokemon.id}`;
                 if(pokemon.id >= 100) pokemonId.textContent = `#${pokemon.id}`;
-    
+
+    //Add type or types of pokemon to every container into card
                     pokemon?.types?.forEach((ele:any)=>{
                         const pokemonType = document.createElement("p");
                         pokemonType.textContent = `${ele.type.name}`;
-    
                         switch(ele.type.name){
                             case TypeOfPokemon.GRASS:
                                 pokemonType.setAttribute("class",  `${TypeOfPokemon.GRASS} pokemon__type`)
@@ -138,14 +137,13 @@ export class GeneratePokemonToDOM{
                         typeContainer.appendChild(pokemonType);
                     });
     
+        //Get every of these created element and add it into newCard and next - newCard to the end of pokemonSection
                 typeContainer.setAttribute("class","pokemon__typeContainer");
                 newCard.appendChild(typeContainer);
                 newCard.appendChild(pokemonId);
                 newCard.setAttribute('id', `${pokemon.id}`);
                 const pokemonSection = document.querySelector('.pokemon')! as HTMLElement;
                 pokemonSection.insertAdjacentElement('beforeend', newCard);
-
-            }
         })
     }
 }

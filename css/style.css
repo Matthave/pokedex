@@ -178,6 +178,8 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 .pokemonSection__loadMore { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 200px; height: 45px; background-color: #30A7D7; border-radius: 5px; margin: 10px 0px; cursor: pointer; font-size: 16px; color: #fff; }
 
+.pokemonSection__loadMore--disable { display: none; }
+
 .grass { background-color: #9BCC50; }
 
 .water { background-color: #4592C4; }

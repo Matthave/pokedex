@@ -17,6 +17,8 @@ export class MenuItemEffect{
         pokemonSection.innerHTML = "";
         rangeOfLoading.from = 0;
         currentGeneratedPokemon.length = 0;
+        const loadBtn = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
+        loadBtn.classList.remove('pokemonSection__loadMore--disable')
     }
 
     clickEffect = (element:string) => {

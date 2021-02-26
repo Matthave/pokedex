@@ -9,18 +9,14 @@ export const rangeOfLoading = {
 
 export let currentGeneratedPokemon:Element[] = [];
 
-const menuItemOne = new MenuItemEffect(MenuItem.TYPE);
-const menuItemTwo = new MenuItemEffect(MenuItem.GENERAL);
-const menuItemThree = new MenuItemEffect(MenuItem.REGION);
-const menuItemFour = new MenuItemEffect(MenuItem.GAME);
-
-
 export class GenerateView{
     typeSort:string;
     constructor(typeOfSort:string){
         this.typeSort = typeOfSort;
+        //Inicial GET pokemon from API
         GenerateView.initialGenerate(typeOfSort);
 
+        //Inicial addEventListener for loadMoreBtn
         const loadBtn = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
         loadBtn.addEventListener('click', ()=> this.loadMorePokemon());
     }
@@ -53,6 +49,9 @@ export class GenerateView{
         loadMorePokemon = () => {
             rangeOfLoading.from = rangeOfLoading.from + 12;
             const getMoreData = new PokemonGet(this.typeSort, rangeOfLoading.from, rangeOfLoading.howMany);
+
+            const loadBtn = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
+            loadBtn.classList.add('pokemonSection__loadMore--disable');
         }
 
         static setTitle = (type:string) => {
@@ -60,6 +59,7 @@ export class GenerateView{
         sectionTitle.textContent = type;
     }
 
+    //When have part of data from API, call this function for sort pokemon and call function which will generate view of pokemon
         static sortData = (typeOfSort:string, eachPoke:any) => {
         //Sort all pokemoin and return a promise resolve 
         const pokemonArray:Element[] = [];
@@ -81,5 +81,8 @@ export class GenerateView{
             })
     }
 }
-
+const menuItemOne = new MenuItemEffect(MenuItem.TYPE);
+const menuItemTwo = new MenuItemEffect(MenuItem.GENERAL);
+const menuItemThree = new MenuItemEffect(MenuItem.REGION);
+const menuItemFour = new MenuItemEffect(MenuItem.GAME);
 const getView = new GenerateView('general');
