@@ -1,4 +1,4 @@
-* { margin: 0; padding: 0; font-family: 'MuseoModerno', cursive; -webkit-box-sizing: border-box; box-sizing: border-box; }
+* { margin: 0; padding: 0; border: 0; outline: transparent; font-family: 'Roboto Condensed', sans-serif; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 body { position: relative; background-image: url("../images/bg_white.svg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; height: 100vh; min-height: 825px; }
 
@@ -140,7 +140,7 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 @keyframes colorChangeBg { 100% { background-color: rgba(255, 255, 255, 0.25); } }
 
-.pokedex { position: relative; display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 100%; max-width: 2000px; height: 0px; background-color: rgba(0, 0, 0, 0.75); padding: 0px 0px 25px; overflow: hidden; z-index: 2; }
+.pokedex { position: relative; display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 100%; max-width: 2000px; height: 0px; background-color: rgba(0, 0, 0, 0.65); padding: 0px 0px 25px; overflow: hidden; z-index: 2; }
 
 .pokedex--showIt { display: -webkit-box; display: -ms-flexbox; display: flex; height: auto; }
 
@@ -150,9 +150,73 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 @media (min-width: 800px) { .sortType__title { font-size: 27.5px; } }
 
-.pokemon { display: -webkit-box; display: -ms-flexbox; display: flex; width: 90%; max-width: 1200px; background-color: #eee; border-radius: 5px; padding: 10px 25px; margin-top: 25px; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; min-height: 100vh; }
+.pokemonSection { display: -webkit-box; display: -ms-flexbox; display: flex; width: 90%; max-width: 1200px; background-color: #eee; border-radius: 5px; padding: 10px 25px; margin-top: 25px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
-.pokemon__card { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 150px; height: 200px; background-color: #777; border-radius: 5px; text-align: center; margin: 10px 15px; }
+.pokemon { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; min-height: 100vh; }
 
-@media (min-width: 800px) { .pokemon__card { width: 300px; height: 400px; } }
+.pokemon__card { position: relative; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 175px; background-color: #dedede; border-radius: 5px; text-align: center; margin: 10px 15px; padding: 15px 5px; cursor: pointer; }
+
+@media (min-width: 800px) { .pokemon__card { width: 235px; } }
+
+.pokemon__card:hover { -webkit-animation: jump 0.2s; animation: jump 0.2s; }
+
+.pokemon__name { text-transform: uppercase; font-size: 20px; font-family: 'Pragati Narrow', sans-serif; }
+
+.pokemon__img { width: 100px; margin: 10px 0px; }
+
+@media (min-width: 800px) { .pokemon__img { width: 150px; } }
+
+.pokemon__questionMark { width: 60px; margin: 10px 0px; }
+
+@media (min-width: 800px) { .pokemon__questionMark { width: 90px; } }
+
+.pokemon__typeContainer { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; margin-bottom: 5px; }
+
+.pokemon__type { width: 75px; border-radius: 5px; padding: 1.5px 5px; margin: 0 2.5px; text-transform: capitalize; font-family: 'Pragati Narrow', sans-serif; }
+
+.pokemon__id { position: absolute; top: 5px; left: 10px; margin-top: 5px; font-size: 11px; color: #444; }
+
+.pokemonSection__loadMore { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 200px; height: 45px; background-color: #30A7D7; border-radius: 5px; margin: 10px 0px; cursor: pointer; font-size: 16px; color: #fff; }
+
+.grass { background-color: #9BCC50; }
+
+.water { background-color: #4592C4; }
+
+.fire { background-color: #FD7D24; }
+
+.bug { background-color: #73A040; }
+
+.poison { background-color: #BA80CA; }
+
+.rock { background-color: #58534F; color: #fff; }
+
+.ground { background-color: #AB9842; }
+
+.electric { background-color: #EED535; }
+
+.flying { background-color: #b5dee9; }
+
+.fighting { background-color: #D56723; }
+
+.psychic { background-color: #F467BA; }
+
+.dragon { background-color: #53A4CF; }
+
+.ghost { background-color: #7B62A3; color: #fff; }
+
+.fairy { background-color: #FDB9E9; }
+
+.ice { background-color: #51C4E7; }
+
+.steel { background-color: #9EB7B8; }
+
+.dark { background-color: #707070; color: #fff; }
+
+.normal { background-color: #A5ADB0; }
+
+@-webkit-keyframes jump { 50% { -webkit-transform: translateY(-5px); transform: translateY(-5px); }
+  100% { -webkit-transform: translateY(0px); transform: translateY(0px); } }
+
+@keyframes jump { 50% { -webkit-transform: translateY(-5px); transform: translateY(-5px); }
+  100% { -webkit-transform: translateY(0px); transform: translateY(0px); } }
 /*# sourceMappingURL=style.css.map */

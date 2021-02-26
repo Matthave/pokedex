@@ -1,15 +1,22 @@
-import {PokemonGet} from "./app";
+import {GenerateView, rangeOfLoading, currentGeneratedPokemon} from "./app";
 export enum MenuItem {TYPE='type', GENERAL='general', REGION='region', GAME='game'};
 
 
 export class MenuItemEffect{
     constructor(element: string){
         const coverElement = document.querySelector(`.coverMouse__${element}`)! as HTMLDivElement;
-        
+ 
         coverElement.addEventListener('mouseover', ()=> this.hoverEffect(element,'over'));
         coverElement.addEventListener('mouseleave', ()=> this.hoverEffect(element, 'leave'));
         coverElement.addEventListener('click', ()=> this.clickEffect(element));
 
+    }
+
+    clearPokemonSectionBeforeGenerate = ():void =>{
+        const pokemonSection = document.querySelector(".pokemon")! as HTMLElement;
+        pokemonSection.innerHTML = "";
+        rangeOfLoading.from = 0;
+        currentGeneratedPokemon.length = 0;
     }
 
     clickEffect = (element:string) => {
@@ -48,7 +55,8 @@ export class MenuItemEffect{
             coverMouse.id = 'minimalized'
         }, 750);
 
-        const pokemonGetSort = new PokemonGet(element)
+        this.clearPokemonSectionBeforeGenerate();
+        GenerateView.initialGenerate(element);
     }
 
     showNavElements = (pokedexSection: HTMLElement,navWrapper: HTMLElement,coverMouse: HTMLElement,nav: HTMLElement,navCircle: HTMLElement,navInnerCircle: HTMLElement,navLine: HTMLElement,navElement:Element[]) => {
