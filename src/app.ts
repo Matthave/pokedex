@@ -14,7 +14,7 @@ export class GenerateView{
     constructor(typeOfSort:string){
         this.typeSort = typeOfSort;
         //Inicial GET pokemon from API
-        GenerateView.initialGenerate(typeOfSort);
+
 
         //Inicial addEventListener for loadMoreBtn
         const loadBtn = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
@@ -31,7 +31,7 @@ export class GenerateView{
                     const getDataGeneral = new PokemonGet(typeOfSort, rangeOfLoading.from, rangeOfLoading.howMany);
                 break;
     
-                case MenuItem.REGION:
+                case MenuItem.COLOR:
                     const getDataRegion = new PokemonGet(typeOfSort, rangeOfLoading.from, rangeOfLoading.howMany);
                 break;
     
@@ -83,6 +83,6 @@ export class GenerateView{
 }
 const menuItemOne = new MenuItemEffect(MenuItem.TYPE);
 const menuItemTwo = new MenuItemEffect(MenuItem.GENERAL);
-const menuItemThree = new MenuItemEffect(MenuItem.REGION);
+const menuItemThree = new MenuItemEffect(MenuItem.COLOR);
 const menuItemFour = new MenuItemEffect(MenuItem.GAME);
 const getView = new GenerateView('general');

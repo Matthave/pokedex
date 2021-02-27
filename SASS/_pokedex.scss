@@ -33,6 +33,38 @@
             font-size: 27.5px
         }
     }
+
+    &__container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__type{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: #aaa;
+        text-transform: capitalize;
+        margin: 10px 15px;
+        font-size: 18px;
+        font-family: 'Pragati Narrow', sans-serif;
+        cursor: pointer;
+        transition: 0.2s;
+
+        @include mq(medium){
+            width:100px;
+            height: 100px; 
+            font-size: 20px;
+        }
+
+        &:hover{
+            transform: translateY(-5px);
+        }
+    }
 }
 
 .pokemonSection{
@@ -46,8 +78,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-    min-height: 100vh;
 
     &__card{
         position: relative;
@@ -142,80 +172,127 @@
     }
 }
 
-.grass{
+.grass, .sortType__grass{
     background-color: #9BCC50;
 }
 
-.water{
+.water, .sortType__water{
     background-color: #4592C4;
 }
 
-.fire{
+.fire, .sortType__fire{
     background-color: #FD7D24;
 }
 
-.bug{
+.bug, .sortType__bug{
     background-color: #73A040;
 }
 
-.poison{
+.poison, .sortType__poison{
     background-color: #BA80CA;
 }
 
-.rock{
+.rock, .sortType__rock{
     background-color: #58534F;
     color: #fff;
 }
 
-.ground{
+.ground, .sortType__ground{
     background-color: #AB9842;
 }
 
-.electric{
+.electric, .sortType__electric{
     background-color: #EED535;
 }
 
-.flying{
+.flying, .sortType__flying{
     background-color: #b5dee9;
 }
 
-.fighting{
+.fighting, .sortType__fighting{
     background-color: #D56723;
 }
 
-.psychic{
+.psychic, .sortType__psychic{
     background-color: #F467BA;
 }
 
-.dragon{
+.dragon, .sortType__dragon{
     background-color: #53A4CF;
 }
 
-.ghost{
+.ghost, .sortType__ghost{
     background-color: #7B62A3;
     color: #fff;
 }
 
-.fairy{
+.fairy, .sortType__fairy{
     background-color: #FDB9E9;
 }
 
-.ice{
+.ice, .sortType__ice{
     background-color: #51C4E7;
 }
 
-.steel{
+.steel, .sortType__steel{
     background-color: #9EB7B8;
 }
 
-.dark{
+.dark, .sortType__dark{
     background-color: #707070;
     color: #fff;
 }
 
-.normal{
+.normal, .sortType__normal{
     background-color: #A5ADB0;
 }
+
+
+.sortType__black{
+    background-color: #111;
+    color:#fff;
+}
+
+.sortType__blue{
+background-color: #fff;
+}
+
+.sortType__blue{
+background-color: #4592C4;
+}
+
+.sortType__Brown{
+    
+}
+
+.sortType__gray{
+    
+}
+
+.sortType__green{
+    
+}
+
+.sortType__pink{
+    
+}
+
+.sortType__purple{
+    
+}
+
+.sortType__red{
+
+}
+
+.sortType__white{
+    
+}
+
+.sortType__yellow{
+    
+}
+
 
 @keyframes jump{
     50%{

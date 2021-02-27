@@ -1,3 +1,4 @@
+import {GenerateView} from "./app"
 enum TypeOfPokemon {
     FIRE= "fire",
     WATER= "water",
@@ -146,4 +147,81 @@ export class GeneratePokemonToDOM{
                 pokemonSection.insertAdjacentElement('beforeend', newCard);
         })
     }
+}
+
+interface EachResult{
+    name?:string,
+    url:string
+}
+
+export class GenerateTypeToDOM {
+    static generateTypesToDOM = (type:EachResult) => {
+        if(type?.name && type.name !== 'unknown' && type?.name !== 'shadow'){
+            const container = document.querySelector(".sortType__container")! as HTMLElement;
+            const typeElement = document.createElement("div");
+            typeElement.setAttribute("class", `sortType__${type?.name} sortType__type`)
+            typeElement.addEventListener('click', function(e){
+                const pokemonSection = document.querySelector(".pokemon")! as HTMLElement;
+                pokemonSection.innerHTML = "";
+                
+                fetch(type?.url)
+                .then(res => res.json())
+                .then(data => {
+                   if(data.pokemon && Array.isArray(data.pokemon)){
+                       const oneTypePokemon = [...data.pokemon];
+                        oneTypePokemon.forEach((ele)=>{
+                            fetch(ele.pokemon.url)
+                            .then(response => response.json())
+                            .then(eachPoke =>{
+                                GenerateView.sortData('type', eachPoke);
+                            })
+                        })
+                   }
+                })
+            })
+    
+            typeElement.textContent = type?.name;
+            container.appendChild(typeElement);
+        }
+    }
+}
+
+
+export class GenerateColorToDOM{
+   static generateColorsToDOM = (color:EachResult) =>{
+    if(color?.name){
+    const container = document.querySelector(".sortType__container")! as HTMLElement;
+    const typeElement = document.createElement("div");
+    typeElement.setAttribute("class", `sortType__${color?.name} sortType__type`)
+    typeElement.addEventListener('click', function(e){
+        const pokemonSection = document.querySelector(".pokemon")! as HTMLElement;
+        pokemonSection.innerHTML = "";
+
+        fetch(color?.url)
+        .then(res => res.json())
+        .then(data => {
+           if(data.pokemon_species && Array.isArray(data.pokemon_species)){
+               const oneTypePokemon = [...data.pokemon_species];
+
+                oneTypePokemon.forEach((ele)=>{
+                    const modificateURL = GenerateColorToDOM.modificateUrl(ele.url);
+                    fetch(modificateURL)
+                    .then(response => response.json())
+                    .then(eachPoke =>{
+                        GenerateView.sortData('color', eachPoke);
+                    })
+                })
+           }
+        })
+    });
+    typeElement.textContent = color?.name;
+    container.appendChild(typeElement);
+    }
+}
+
+
+static modificateUrl = (url:string):string => {
+const splitUrl = url.split("/");
+return `${splitUrl[0]}//${splitUrl[2]}/${splitUrl[3]}/${splitUrl[4]}/pokemon/${splitUrl[6]}`;
+}
 }

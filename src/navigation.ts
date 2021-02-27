@@ -1,5 +1,5 @@
 import {GenerateView, rangeOfLoading, currentGeneratedPokemon} from "./app";
-export enum MenuItem {TYPE='type', GENERAL='general', REGION='region', GAME='game'};
+export enum MenuItem {TYPE='type', GENERAL='general', COLOR='color', GAME='game'};
 
 
 export class MenuItemEffect{
@@ -14,9 +14,13 @@ export class MenuItemEffect{
 
     clearPokemonSectionBeforeGenerate = ():void =>{
         const pokemonSection = document.querySelector(".pokemon")! as HTMLElement;
+        const typesSection = document.querySelector(".sortType__container")! as HTMLElement;
+        typesSection.innerHTML = "";
         pokemonSection.innerHTML = "";
         rangeOfLoading.from = 0;
         currentGeneratedPokemon.length = 0;
+
+
         const loadBtn = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
         loadBtn.classList.remove('pokemonSection__loadMore--disable')
     }
@@ -56,16 +60,15 @@ export class MenuItemEffect{
             pokedexSection.classList.add('pokedex--showIt');
             coverMouse.id = 'minimalized'
         }, 750);
-
-        this.clearPokemonSectionBeforeGenerate();
-        GenerateView.initialGenerate(element);
+        
+            GenerateView.initialGenerate(element);
     }
 
     showNavElements = (pokedexSection: HTMLElement,navWrapper: HTMLElement,coverMouse: HTMLElement,nav: HTMLElement,navCircle: HTMLElement,navInnerCircle: HTMLElement,navLine: HTMLElement,navElement:Element[]) => {
         document.querySelector('.nav__game')!.classList.remove(`nav__game--active`);
         document.querySelector('.nav__general')!.classList.remove(`nav__general--active`);
         document.querySelector('.nav__type')!.classList.remove(`nav__type--active`);
-        document.querySelector('.nav__region')!.classList.remove(`nav__region--active`);
+        document.querySelector('.nav__color')!.classList.remove(`nav__color--active`);
         pokedexSection.classList.remove('pokedex--showIt');
         navWrapper.classList.remove('navWrapper--hide');
         coverMouse.classList.remove('coverMouse--hide');
@@ -83,6 +86,8 @@ export class MenuItemEffect{
                 ele.classList.remove("nav__option--hide");
             })
         }, 750);
+
+        this.clearPokemonSectionBeforeGenerate();
     }
 
 

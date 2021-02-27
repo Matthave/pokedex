@@ -168,7 +168,7 @@
         }
     }
 
-    &__region{
+    &__color{
         top:-50px;
         left:calc(100% - 15px);
         background-color: #FDA08F;
@@ -283,7 +283,7 @@
 }
 
 
-.type__icon, .general__icon, .region__icon, .game__icon{
+.type__icon, .general__icon, .color__icon, .game__icon{
 transform-origin: center;
 transition: 0.3s;
     &--active{
