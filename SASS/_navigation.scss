@@ -1,4 +1,5 @@
 .navWrapper{
+    position: fixed;
     width:100%;
     min-width: 350px;
     height: 100vh;
@@ -23,6 +24,7 @@
         &--hide{
             height: 75px;
             min-height: 0px;
+            z-index: 3;
         }
     }
 }
@@ -250,8 +252,8 @@
         height: 80px;
         border:10px solid #fff;
         border-radius: 50%;
-        background-color: #000;
-        animation: circleTransition 0.3s 1s linear, colorChangeBorder 0.3s 2.3s linear forwards ;
+        background-color: #212121;
+        animation:colorChangeBorder 0.3s 2.3s linear forwards ;
         animation-fill-mode: forwards;
 
         &--hide{
@@ -296,10 +298,6 @@ transition: 0.3s;
     0%{transform:translate(-50%,-50%) rotateX(150deg) rotateZ(180deg);}
     100%{transform:translate(-50%,-50%) rotateX(90deg) rotateZ(180deg);}
 };
-
-@keyframes circleTransition {
-    100%{background-color: #141414;}
-}
 
 @keyframes fullWidth {
     100%{width:100%}

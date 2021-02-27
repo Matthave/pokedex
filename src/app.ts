@@ -51,7 +51,7 @@ export class GenerateView{
             const getMoreData = new PokemonGet(this.typeSort, rangeOfLoading.from, rangeOfLoading.howMany);
 
             const loadBtn = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
-            loadBtn.classList.add('pokemonSection__loadMore--disable');
+            // loadBtn.classList.add('pokemonSection__loadMore--disable');
         }
 
         static setTitle = (type:string) => {

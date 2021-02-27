@@ -7,27 +7,36 @@
     width:100%;
     max-width: 2000px;
     height: 0px;
-    background-color: rgba(0,0,0,0.65);
-    padding:0px 0px 25px;
+    background-color: transparent;
+    padding:75px 0px 25px;
     overflow: hidden;
 
     &--showIt{
         display: flex;
         height: auto;
     }
-    z-index: 2;
+    z-index: 1;
 }
 
 .sortType{
     @include section;
     flex-direction: column;
+    padding:0;
+    padding-bottom: 15px;
     
     min-height: 200px;
 
     &__title{
+        width:100%;
         text-align: center;
         text-transform: uppercase;
-        font-size: 20px;
+        font-size: 26px;
+        padding: 15px 0px;
+        margin-bottom: 15px;
+        background-color: #232323;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        color:#fff;
 
         @include mq(medium){
             font-size: 27.5px
@@ -54,6 +63,7 @@
         font-family: 'Pragati Narrow', sans-serif;
         cursor: pointer;
         transition: 0.2s;
+        color:#fff;
 
         @include mq(medium){
             width:100px;
@@ -71,6 +81,8 @@
     @include section;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 60vh;
 }
 
 
@@ -141,6 +153,7 @@
         margin: 0 2.5px;
         text-transform: capitalize;
         font-family: 'Pragati Narrow', sans-serif;
+        color:#fff;
     }
 
     &__id{
@@ -157,7 +170,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     width:200px;
     height: 45px;
     background-color: #30A7D7;
@@ -203,10 +215,12 @@
 
 .electric, .sortType__electric{
     background-color: #EED535;
+    color:#000;
 }
 
 .flying, .sortType__flying{
     background-color: #b5dee9;
+    color:#000;
 }
 
 .fighting, .sortType__fighting{
@@ -228,6 +242,7 @@
 
 .fairy, .sortType__fairy{
     background-color: #FDB9E9;
+    color:#000;
 }
 
 .ice, .sortType__ice{
@@ -240,12 +255,13 @@
 
 .dark, .sortType__dark{
     background-color: #707070;
-    color: #fff;
 }
 
 .normal, .sortType__normal{
     background-color: #A5ADB0;
 }
+
+
 
 
 .sortType__black{
@@ -261,36 +277,41 @@ background-color: #fff;
 background-color: #4592C4;
 }
 
-.sortType__Brown{
-    
+.sortType__brown{
+    background-color: rgb(95, 64, 40);
 }
 
 .sortType__gray{
-    
+    background-color: #aaa;
 }
 
 .sortType__green{
-    
+    background-color: #9BCC50;
 }
 
 .sortType__pink{
-    
+    background-color: #FDB9E9;
+    color:#111;
 }
 
 .sortType__purple{
-    
+    background-color: #722d7b;
 }
 
 .sortType__red{
-
+    background-color: #D64C62;
 }
 
 .sortType__white{
+    background-color: #fff;
+    border:0.5px solid #111;
+    color:#111;
     
 }
 
 .sortType__yellow{
-    
+    background-color: #F3D77B;
+    color:#111;
 }
 
 

@@ -1,24 +1,5 @@
 import {GenerateView} from "./app"
-enum TypeOfPokemon {
-    FIRE= "fire",
-    WATER= "water",
-    GRASS= "grass",
-    POISON= "poison",
-    BUG= "bug",
-    ELECTRIC= "electric",
-    NORMAL= "normal",
-    FLYING= "flying",
-    ROCK= "rock",
-    GROUND= "ground",
-    PSYCHIC = "psychic",
-    FIGHTING = "fighting",
-    DRAGON = "dragon",
-    DARK = "dark",
-    FAIRY = "fairy",
-    GHOST = "ghost",
-    ICE = "ice",
-    STEEL = "steel",
-};
+import {switchTypeForCoverFunc, switchForPokemonTypeFunc} from "./utils/switchType";
 
 export class GeneratePokemonToDOM{
     constructor(allPokemon:Element[]){
@@ -59,82 +40,9 @@ export class GeneratePokemonToDOM{
                     pokemon?.types?.forEach((ele:any)=>{
                         const pokemonType = document.createElement("p");
                         pokemonType.textContent = `${ele.type.name}`;
-                        switch(ele.type.name){
-                            case TypeOfPokemon.GRASS:
-                                pokemonType.setAttribute("class",  `${TypeOfPokemon.GRASS} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.WATER:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.WATER} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.FIRE:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.FIRE} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.BUG:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.BUG} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.POISON:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.POISON} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.ELECTRIC:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.ELECTRIC} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.NORMAL:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.NORMAL} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.FLYING:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.FLYING} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.ROCK:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.ROCK} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.GROUND:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.GROUND} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.PSYCHIC:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.PSYCHIC} pokemon__type`)
-                            break;
-                            
-                            case TypeOfPokemon.FIGHTING:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.FIGHTING} pokemon__type`)
-                            break;
-                            
-                            case TypeOfPokemon.DRAGON:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.DRAGON} pokemon__type`)
-                            break;
-                            
-                            case TypeOfPokemon.DARK:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.DARK} pokemon__type`)
-                            break;
-                            
-                            case TypeOfPokemon.FAIRY:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.FAIRY} pokemon__type`)
-                            break;
-                            
-                            case TypeOfPokemon.GHOST:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.GHOST} pokemon__type`)
-                            break;
-    
-                            case TypeOfPokemon.ICE:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.ICE} pokemon__type`)
-                            break;
-                            
-                            case TypeOfPokemon.STEEL:
-                                pokemonType.setAttribute("class", `${TypeOfPokemon.STEEL} pokemon__type`)
-                            break;
-                            default:
-                                return;
-                        }
-    
+
+                        switchForPokemonTypeFunc(ele, pokemonType);
+
                         typeContainer.appendChild(pokemonType);
                     });
     
@@ -156,12 +64,14 @@ interface EachResult{
 
 export class GenerateTypeToDOM {
     static generateTypesToDOM = (type:EachResult) => {
-        if(type?.name && type.name !== 'unknown' && type?.name !== 'shadow'){
+        if(type?.name && type?.name !== 'unknown' && type?.name !== 'shadow'){
             const container = document.querySelector(".sortType__container")! as HTMLElement;
             const typeElement = document.createElement("div");
             typeElement.setAttribute("class", `sortType__${type?.name} sortType__type`)
             typeElement.addEventListener('click', function(e){
                 const pokemonSection = document.querySelector(".pokemon")! as HTMLElement;
+
+                switchTypeForCoverFunc(type);
                 pokemonSection.innerHTML = "";
                 
                 fetch(type?.url)
@@ -185,7 +95,6 @@ export class GenerateTypeToDOM {
         }
     }
 }
-
 
 export class GenerateColorToDOM{
    static generateColorsToDOM = (color:EachResult) =>{

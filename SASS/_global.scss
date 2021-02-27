@@ -30,13 +30,16 @@ top:0;
 left:0;
 width:100%;
 height: 100%;
-background-color: rgba(0,0,0,1);
-animation:showCover 0.4s 1s linear ;
-animation-fill-mode: forwards;
+background-color: rgba(0,0,0,0.1);
+transition: 0.2s;
+
+&--lowerPosition{
+  top:75px;
+}
 }
 
 .coverMouse{
-position: absolute;
+position: fixed;
 top:0;
 left:0;
 width:100%;
@@ -51,6 +54,7 @@ justify-content: center;
 
 &--hide{
   height: 75px;
+  z-index: 4;
 }
 
   &__type{
@@ -78,13 +82,6 @@ justify-content: center;
     background-color: rgba(136, 148, 66, 0);
   }
 }
-
-@keyframes showCover{
-    100%{
-        background-color: rgba(0,0,0,0.45);
-    }
-}
-
 
 ::-webkit-scrollbar {
     width: 7px;

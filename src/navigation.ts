@@ -12,17 +12,18 @@ export class MenuItemEffect{
 
     }
 
-    clearPokemonSectionBeforeGenerate = ():void =>{
+    clearPokemonSectionBeforeGenerate = (element:string):void =>{
         const pokemonSection = document.querySelector(".pokemon")! as HTMLElement;
         const typesSection = document.querySelector(".sortType__container")! as HTMLElement;
+
+        if(element === MenuItem.GENERAL){
+            pokemonSection.innerHTML = "";
+        }else{
+            pokemonSection.innerHTML = "<p class='pokemon__dummyText'>There is nothing to display for the moment</p>";
+        }
         typesSection.innerHTML = "";
-        pokemonSection.innerHTML = "";
         rangeOfLoading.from = 0;
         currentGeneratedPokemon.length = 0;
-
-
-        const loadBtn = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
-        loadBtn.classList.remove('pokemonSection__loadMore--disable')
     }
 
     clickEffect = (element:string) => {
@@ -34,16 +35,17 @@ export class MenuItemEffect{
         const navInnerCircle = document.querySelector('.circle__innerCircle')! as HTMLDivElement;
         const coverMouse = document.querySelector('.coverMouse')! as HTMLDivElement;
         const pokedexSection = document.querySelector(".pokedex")! as HTMLElement;
+        const cover = document.querySelector(".cover")! as HTMLElement;
 
         if(coverMouse.id !== 'minimalized'){
-            this.hideNavElements(element, navElement ,nav, navCircle, navInnerCircle, navLine, navWrapper, coverMouse, pokedexSection)
+            this.hideNavElements(element, navElement ,nav, navCircle, navInnerCircle, navLine, navWrapper, coverMouse, pokedexSection, cover)
         }else{
-            this.showNavElements(pokedexSection, navWrapper, coverMouse, nav, navCircle, navInnerCircle, navLine, navElement);
+            this.showNavElements(pokedexSection, navWrapper, coverMouse, nav, navCircle, navInnerCircle, navLine, navElement, cover);
         }
     }
 
 
-    hideNavElements = (element:string, navElement: Element[],nav: HTMLElement,navCircle: HTMLElement,navInnerCircle: HTMLElement,navLine: HTMLElement,navWrapper: HTMLElement,coverMouse: HTMLElement,pokedexSection: HTMLElement) => {
+    hideNavElements = (element:string, navElement: Element[],nav: HTMLElement,navCircle: HTMLElement,navInnerCircle: HTMLElement,navLine: HTMLElement,navWrapper: HTMLElement,coverMouse: HTMLElement,pokedexSection: HTMLElement, cover:HTMLElement) => {
         navElement.forEach((ele)=>{
             ele.classList.add("nav__option--hide");
         })
@@ -58,13 +60,25 @@ export class MenuItemEffect{
             navWrapper.classList.add('navWrapper--hide');
             coverMouse.classList.add('coverMouse--hide');
             pokedexSection.classList.add('pokedex--showIt');
-            coverMouse.id = 'minimalized'
+            coverMouse.id = 'minimalized';
+            cover.classList.add('cover--lowerPosition')
         }, 750);
+
         
+        //Do this with every click in nav element
+            this.clearPokemonSectionBeforeGenerate(element);
+             const loadMoreButton = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
+
+            if(element === MenuItem.GENERAL){
+                loadMoreButton.classList.remove("pokemonSection__loadMore--disable");
+            }else{
+                loadMoreButton.classList.add("pokemonSection__loadMore--disable");
+            }
+
             GenerateView.initialGenerate(element);
     }
 
-    showNavElements = (pokedexSection: HTMLElement,navWrapper: HTMLElement,coverMouse: HTMLElement,nav: HTMLElement,navCircle: HTMLElement,navInnerCircle: HTMLElement,navLine: HTMLElement,navElement:Element[]) => {
+    showNavElements = (pokedexSection: HTMLElement,navWrapper: HTMLElement,coverMouse: HTMLElement,nav: HTMLElement,navCircle: HTMLElement,navInnerCircle: HTMLElement,navLine: HTMLElement,navElement:Element[], cover:HTMLElement) => {
         document.querySelector('.nav__game')!.classList.remove(`nav__game--active`);
         document.querySelector('.nav__general')!.classList.remove(`nav__general--active`);
         document.querySelector('.nav__type')!.classList.remove(`nav__type--active`);
@@ -72,6 +86,8 @@ export class MenuItemEffect{
         pokedexSection.classList.remove('pokedex--showIt');
         navWrapper.classList.remove('navWrapper--hide');
         coverMouse.classList.remove('coverMouse--hide');
+        cover.classList.remove('cover--lowerPosition')
+        cover.style.backgroundColor = "rgba(0,0,0,0.1)"
         coverMouse.id = "";
 
         setTimeout(() => {
@@ -87,9 +103,7 @@ export class MenuItemEffect{
             })
         }, 750);
 
-        this.clearPokemonSectionBeforeGenerate();
     }
-
 
     hoverEffect = (element:string, eventType:string): void => {
         const navElement = document.querySelector(`.nav__${element}`)! as HTMLDivElement;

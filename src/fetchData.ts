@@ -12,94 +12,68 @@ export class PokemonGet{
     public typeAPI:string;
     public colorAPI: string;
     public allPokemon: Element[];
-    public allTypes: Element[];
     constructor(typeOfSort:string, from:number, howMany:number){
         this.typeAPI = `https://pokeapi.co/api/v2/type/`;
         this.generalAPI = `https://pokeapi.co/api/v2/pokemon/?offset=${from}&limit=${howMany}`;
         this.colorAPI = `https://pokeapi.co/api/v2/pokemon-color/`;
         this.allPokemon = [];
-        this.allTypes = [];
 
         switch(typeOfSort){
             case MenuItem.TYPE:
-               fetch(this.typeAPI)
-               .then(response => response.json())
-               .then(data => {
-                data.results.forEach((type:EachResult)=>{
-                    GenerateTypeToDOM.generateTypesToDOM(type)
-                })
-               })
+                this.getColorOrTypeFunc(this.typeAPI, MenuItem.TYPE);
             break;
 
             case MenuItem.GENERAL:
-                //Get all pokemon except this url's that don't work and fetch every single url pokemon, push it to the array and send to sortData function
-                fetch(this.generalAPI)
-                .then(response => response.json())
-                .then(data => {
-                    data.results.forEach((pokemon:EachResult)=>{
-                        if(
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/272/' ||
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/375/' || 
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/582/' || 
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/787/' || 
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/881/'
-                         ){
-                        return;
-                        }else{
-                            fetch(pokemon.url)
-                            .then(res => res.json())
-                            .then(eachPoke => {
-                                this.allPokemon.push(eachPoke);
-                                GenerateView.sortData(typeOfSort, eachPoke);
-                            } )
-                            .catch((err)=>{
-                                console.log("ERROR", err)
-                            })
-                        }
-                    })
-                })
+                //Get pokemon and fetch every single url pokemon, push it to the array and send to sortData function
+                this.getGeneralFunc(this.generalAPI, typeOfSort);
+
             break;
 
             case MenuItem.COLOR:
-                fetch(this.colorAPI)
-                .then(response => response.json())
-                .then(data => {
-                 data.results.forEach((color:EachResult)=>{
-                    GenerateColorToDOM.generateColorsToDOM(color)
-                 })
-                })
+                this.getColorOrTypeFunc(this.colorAPI, MenuItem.COLOR);
             break;
 
             case MenuItem.GAME:
-                console.log('game')
+
             break;
 
             default:
-                fetch(this.generalAPI)
-                .then(response => response.json())
-                .then(data => {
-                    data.results.forEach((pokemon:EachResult)=>{
-                        if(
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/272/' ||
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/375/' || 
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/582/' || 
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/787/' || 
-                         pokemon.url === 'https://pokeapi.co/api/v2/pokemon/881/'
-                         ){
-                        return;
-                        }else{
-                            fetch(pokemon.url)
-                            .then(res => res.json())
-                            .then(eachPoke => {
-                                this.allPokemon.push(eachPoke);
-                                GenerateView.sortData(typeOfSort, eachPoke);
-                            } )
-                            .catch((err)=>{
-                                console.log("ERROR", err)
-                            })
-                        }
-                    })
-                })
+                this.getGeneralFunc(this.generalAPI, typeOfSort);
         }
+    }
+
+    getGeneralFunc = (API:string, typeOfSort:string) =>{
+        fetch(API)
+        .then(response => response.json())
+        .then(data => {
+            data.results.forEach((pokemon:EachResult)=>{
+                    fetch(pokemon.url)
+                    .then(res => res.json())
+                    .then(eachPoke => {
+                        this.allPokemon.push(eachPoke);
+                        GenerateView.sortData(typeOfSort, eachPoke);
+                    } )
+                    .catch((err)=>{
+                        console.log("ERROR", err)
+                    })
+            })
+        })
+    }
+
+    getColorOrTypeFunc = (API:string, APIType:string) => {
+        fetch(API)
+        .then(response => response.json())
+        .then(data => {
+         data.results.forEach((type:EachResult)=>{
+             if(APIType === MenuItem.TYPE){
+                GenerateTypeToDOM.generateTypesToDOM(type)
+             }else if(APIType === MenuItem.COLOR){
+                GenerateColorToDOM.generateColorsToDOM(type)
+             }
+         })
+        })
+        .catch((err)=>{
+         console.log("ERROR", err)
+     })
     }
 }

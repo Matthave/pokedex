@@ -4,11 +4,13 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 .app { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
-.cover { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; -webkit-animation: showCover 0.4s 1s linear; animation: showCover 0.4s 1s linear; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; }
+.cover { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.1); -webkit-transition: 0.2s; transition: 0.2s; }
 
-.coverMouse { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); z-index: 1; cursor: none; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.cover--lowerPosition { top: 75px; }
 
-.coverMouse--hide { height: 75px; }
+.coverMouse { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); z-index: 1; cursor: none; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+
+.coverMouse--hide { height: 75px; z-index: 4; }
 
 .coverMouse__type { -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; height: 50%; background-color: rgba(20, 100, 30, 0); }
 
@@ -20,10 +22,6 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 .coverMouse__game { width: 100%; height: 50%; background-color: rgba(136, 148, 66, 0); }
 
-@-webkit-keyframes showCover { 100% { background-color: rgba(0, 0, 0, 0.45); } }
-
-@keyframes showCover { 100% { background-color: rgba(0, 0, 0, 0.45); } }
-
 ::-webkit-scrollbar { width: 7px; }
 
 ::-webkit-scrollbar-track { background: #fff; }
@@ -32,12 +30,12 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 ::-webkit-scrollbar-thumb:hover { background: #F73636; }
 
-.navWrapper { width: 100%; min-width: 350px; height: 100vh; min-height: 825px; background-color: rgba(0, 0, 0, 0.85); -webkit-transition: 0.3s; transition: 0.3s; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.navWrapper { position: fixed; width: 100%; min-width: 350px; height: 100vh; min-height: 825px; background-color: rgba(0, 0, 0, 0.85); -webkit-transition: 0.3s; transition: 0.3s; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
 .navWrapper--hide { height: 75px; min-height: 0px; }
 
 @media (min-width: 800px) { .navWrapper { min-width: 705px; min-height: 975px; }
-  .navWrapper--hide { height: 75px; min-height: 0px; } }
+  .navWrapper--hide { height: 75px; min-height: 0px; z-index: 3; } }
 
 .nav { position: relative; z-index: 1; width: 300px; height: 300px; -webkit-transform-origin: center; transform-origin: center; border: 20px solid #fff; border-radius: 50%; -webkit-animation: colorChangeBorder 0.3s 2.3s linear forwards; animation: colorChangeBorder 0.3s 2.3s linear forwards; -webkit-transition: 0.3s; transition: 0.3s; }
 
@@ -100,7 +98,7 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 @media (min-width: 800px) { .circle { width: 550px; height: 550px; }
   .circle--hide { width: 50px; height: 50px; } }
 
-.circle__innerCircle { position: absolute; top: 0; left: 50%; -webkit-transform: translate(-50%, -50%) rotateX(90deg); transform: translate(-50%, -50%) rotateX(90deg); -webkit-transform-origin: center; transform-origin: center; width: 80px; height: 80px; border: 10px solid #fff; border-radius: 50%; background-color: #000; -webkit-animation: circleTransition 0.3s 1s linear, colorChangeBorder 0.3s 2.3s linear forwards; animation: circleTransition 0.3s 1s linear, colorChangeBorder 0.3s 2.3s linear forwards; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; }
+.circle__innerCircle { position: absolute; top: 0; left: 50%; -webkit-transform: translate(-50%, -50%) rotateX(90deg); transform: translate(-50%, -50%) rotateX(90deg); -webkit-transform-origin: center; transform-origin: center; width: 80px; height: 80px; border: 10px solid #fff; border-radius: 50%; background-color: #212121; -webkit-animation: colorChangeBorder 0.3s 2.3s linear forwards; animation: colorChangeBorder 0.3s 2.3s linear forwards; -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards; }
 
 .circle__innerCircle--hide { width: 15px; height: 15px; border: 2px solid #fff; }
 
@@ -120,10 +118,6 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 @keyframes anime { 0% { -webkit-transform: translate(-50%, -50%) rotateX(150deg) rotateZ(180deg); transform: translate(-50%, -50%) rotateX(150deg) rotateZ(180deg); }
   100% { -webkit-transform: translate(-50%, -50%) rotateX(90deg) rotateZ(180deg); transform: translate(-50%, -50%) rotateX(90deg) rotateZ(180deg); } }
 
-@-webkit-keyframes circleTransition { 100% { background-color: #141414; } }
-
-@keyframes circleTransition { 100% { background-color: #141414; } }
-
 @-webkit-keyframes fullWidth { 100% { width: 100%; } }
 
 @keyframes fullWidth { 100% { width: 100%; } }
@@ -140,25 +134,25 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 @keyframes colorChangeBg { 100% { background-color: rgba(255, 255, 255, 0.25); } }
 
-.pokedex { position: relative; display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 100%; max-width: 2000px; height: 0px; background-color: rgba(0, 0, 0, 0.65); padding: 0px 0px 25px; overflow: hidden; z-index: 2; }
+.pokedex { position: relative; display: none; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 100%; max-width: 2000px; height: 0px; background-color: transparent; padding: 75px 0px 25px; overflow: hidden; z-index: 1; }
 
 .pokedex--showIt { display: -webkit-box; display: -ms-flexbox; display: flex; height: auto; }
 
-.sortType { display: -webkit-box; display: -ms-flexbox; display: flex; width: 90%; max-width: 1200px; background-color: #eee; border-radius: 5px; padding: 10px 25px; margin-top: 25px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; min-height: 200px; }
+.sortType { display: -webkit-box; display: -ms-flexbox; display: flex; width: 90%; max-width: 1200px; background-color: #eee; border-radius: 5px; padding: 10px 25px; margin-top: 25px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; padding: 0; padding-bottom: 15px; min-height: 200px; }
 
-.sortType__title { text-align: center; text-transform: uppercase; font-size: 20px; }
+.sortType__title { width: 100%; text-align: center; text-transform: uppercase; font-size: 26px; padding: 15px 0px; margin-bottom: 15px; background-color: #232323; border-top-left-radius: 5px; border-top-right-radius: 5px; color: #fff; }
 
 @media (min-width: 800px) { .sortType__title { font-size: 27.5px; } }
 
 .sortType__container { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
-.sortType__type { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 80px; height: 80px; border-radius: 50%; background-color: #aaa; text-transform: capitalize; margin: 10px 15px; font-size: 18px; font-family: 'Pragati Narrow', sans-serif; cursor: pointer; -webkit-transition: 0.2s; transition: 0.2s; }
+.sortType__type { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 80px; height: 80px; border-radius: 50%; background-color: #aaa; text-transform: capitalize; margin: 10px 15px; font-size: 18px; font-family: 'Pragati Narrow', sans-serif; cursor: pointer; -webkit-transition: 0.2s; transition: 0.2s; color: #fff; }
 
 @media (min-width: 800px) { .sortType__type { width: 100px; height: 100px; font-size: 20px; } }
 
 .sortType__type:hover { -webkit-transform: translateY(-5px); transform: translateY(-5px); }
 
-.pokemonSection { display: -webkit-box; display: -ms-flexbox; display: flex; width: 90%; max-width: 1200px; background-color: #eee; border-radius: 5px; padding: 10px 25px; margin-top: 25px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+.pokemonSection { display: -webkit-box; display: -ms-flexbox; display: flex; width: 90%; max-width: 1200px; background-color: #eee; border-radius: 5px; padding: 10px 25px; margin-top: 25px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; min-height: 60vh; }
 
 .pokemon { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
@@ -180,7 +174,7 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 .pokemon__typeContainer { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; margin-bottom: 5px; }
 
-.pokemon__type { width: 75px; border-radius: 5px; padding: 1.5px 5px; margin: 0 2.5px; text-transform: capitalize; font-family: 'Pragati Narrow', sans-serif; }
+.pokemon__type { width: 75px; border-radius: 5px; padding: 1.5px 5px; margin: 0 2.5px; text-transform: capitalize; font-family: 'Pragati Narrow', sans-serif; color: #fff; }
 
 .pokemon__id { position: absolute; top: 5px; left: 10px; margin-top: 5px; font-size: 11px; color: #444; }
 
@@ -202,9 +196,9 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 .ground, .sortType__ground { background-color: #AB9842; }
 
-.electric, .sortType__electric { background-color: #EED535; }
+.electric, .sortType__electric { background-color: #EED535; color: #000; }
 
-.flying, .sortType__flying { background-color: #b5dee9; }
+.flying, .sortType__flying { background-color: #b5dee9; color: #000; }
 
 .fighting, .sortType__fighting { background-color: #D56723; }
 
@@ -214,13 +208,13 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 .ghost, .sortType__ghost { background-color: #7B62A3; color: #fff; }
 
-.fairy, .sortType__fairy { background-color: #FDB9E9; }
+.fairy, .sortType__fairy { background-color: #FDB9E9; color: #000; }
 
 .ice, .sortType__ice { background-color: #51C4E7; }
 
 .steel, .sortType__steel { background-color: #9EB7B8; }
 
-.dark, .sortType__dark { background-color: #707070; color: #fff; }
+.dark, .sortType__dark { background-color: #707070; }
 
 .normal, .sortType__normal { background-color: #A5ADB0; }
 
@@ -229,6 +223,22 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 .sortType__blue { background-color: #fff; }
 
 .sortType__blue { background-color: #4592C4; }
+
+.sortType__brown { background-color: #5f4028; }
+
+.sortType__gray { background-color: #aaa; }
+
+.sortType__green { background-color: #9BCC50; }
+
+.sortType__pink { background-color: #FDB9E9; color: #111; }
+
+.sortType__purple { background-color: #722d7b; }
+
+.sortType__red { background-color: #D64C62; }
+
+.sortType__white { background-color: #fff; border: 0.5px solid #111; color: #111; }
+
+.sortType__yellow { background-color: #F3D77B; color: #111; }
 
 @-webkit-keyframes jump { 50% { -webkit-transform: translateY(-5px); transform: translateY(-5px); }
   100% { -webkit-transform: translateY(0px); transform: translateY(0px); } }
