@@ -196,7 +196,7 @@ class GeneratePokemonToDOM {
                     newCard.appendChild(pokemonImg);
                 }
                 else {
-                    pokemonImg.setAttribute("src", './images/questionMark.svg');
+                    pokemonImg.setAttribute("src", '/images/questionMark.svg');
                     pokemonImg.setAttribute("class", "pokemon__questionMark");
                     newCard.appendChild(pokemonImg);
                 }
