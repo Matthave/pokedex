@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pragati+Narrow:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Pokédex</title>
+</head>
+<body>
+    <main class="app">
+<!-- Circle Menu --->
+        <div class="navWrapper">
+            <div class="nav">
+                <div class="nav__general nav__option">GENERAL</div>
+                <div class="nav__type nav__option">TYPE</div>
+                <div class="nav__color nav__option">COLOR</div>
+                <div class="nav__game nav__option">GAME</div>
+            
+                <div class="circle">
+                    <div class="circle__innerCircle"></div>
+                </div>
+                <div class="nav__line"></div>
+            </div>
+        </div>
+<!-- Circle Menu --->
+
+        <section class="pokedex">
+            <div class="sortType">
+                <h1 class="sortType__title">Type</h1>
+                <div class="sortType__container">
+
+                </div>
+            </div>
+            <div class="pokemonSection">
+                <div class="pokemon"></div>
+                <button class="pokemonSection__loadMore">See more Pokémon</button>
+            </div>
+
+        </section>
+    </main>
+
+
+<!-- Cover Element - Fixed Element-->
+<div class="cover"></div>
+<div class="coverMouse">
+    <div class="coverMouse__type"></div>
+    <div class="coverMouse__general"></div>
+    <div class="coverMouse__color"></div>
+    <div class="coverMouse__game"></div>
+</div>
+<script type="module" src="./bundle.js"></script>
+</body>
+</html>
