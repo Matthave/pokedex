@@ -1,6 +1,5 @@
-import {GenerateView} from "./app";
 import {MenuItem} from "./navigation";
-import {GenerateTypeToDOM, GenerateColorToDOM} from "./generateToDOM"
+import {GenerateTypeToDOM, GenerateColorToDOM, GenerateGeneralToDOM} from "./generateToDOM"
 
 interface EachResult{
     name?:string,
@@ -25,7 +24,7 @@ export class PokemonGet{
 
             case MenuItem.GENERAL:
                 //Get pokemon and fetch every single url pokemon, push it to the array and send to sortData function
-                this.getGeneralFunc(this.generalAPI, typeOfSort);
+                this.getColorOrTypeFunc(this.generalAPI, MenuItem.GENERAL);
 
             break;
 
@@ -38,37 +37,39 @@ export class PokemonGet{
             break;
 
             default:
-                this.getGeneralFunc(this.generalAPI, typeOfSort);
+                this.getColorOrTypeFunc(this.generalAPI, MenuItem.GENERAL);
         }
     }
 
-    getGeneralFunc = (API:string, typeOfSort:string) =>{
-        fetch(API)
-        .then(response => response.json())
-        .then(data => {
-            data.results.forEach((pokemon:EachResult)=>{
-                    fetch(pokemon.url)
-                    .then(res => res.json())
-                    .then(eachPoke => {
-                        this.allPokemon.push(eachPoke);
-                        GenerateView.sortData(typeOfSort, eachPoke);
-                    } )
-                    .catch((err)=>{
-                        console.log("ERROR", err)
-                    })
-            })
-        })
-    }
+    // getGeneralFunc = (API:string, typeOfSort:string) =>{
+    //     fetch(API)
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         data.results.forEach((pokemon:EachResult)=>{
+    //                 fetch(pokemon.url)
+    //                 .then(res => res.json())
+    //                 .then(eachPoke => {
+    //                     this.allPokemon.push(eachPoke);
+    //                     GenerateView.sortData(typeOfSort, eachPoke);
+    //                 } )
+    //                 .catch((err)=>{
+    //                     console.log("ERROR", err)
+    //                 })
+    //         })
+    //     })
+    // }
 
     getColorOrTypeFunc = (API:string, APIType:string) => {
         fetch(API)
         .then(response => response.json())
         .then(data => {
-         data.results.forEach((type:EachResult)=>{
+         data.results.forEach((type:EachResult, index:number)=>{
              if(APIType === MenuItem.TYPE){
                 GenerateTypeToDOM.generateTypesToDOM(type)
              }else if(APIType === MenuItem.COLOR){
                 GenerateColorToDOM.generateColorsToDOM(type)
+             }else if (APIType === MenuItem.GENERAL){
+                GenerateGeneralToDOM.generateGeneralToDOM(type, index)
              }
          })
         })

@@ -1,5 +1,6 @@
-import {GenerateView} from "./app"
 import {switchTypeForCoverFunc, switchForPokemonTypeFunc} from "./utils/switchType";
+
+export const pokemonCollect:Element[] = [];
 
 export class GeneratePokemonToDOM{
     constructor(allPokemon:Element[]){
@@ -27,7 +28,7 @@ export class GeneratePokemonToDOM{
                     pokemonImg.setAttribute("loading","lazy");
                     newCard.appendChild(pokemonImg);
                 }else{
-                    pokemonImg.setAttribute("src", '../images/questionMark.svg');
+                    pokemonImg.setAttribute("src", '/images/questionMark.svg');
                     pokemonImg.setAttribute("class","pokemon__questionMark");
                     newCard.appendChild(pokemonImg);
                 }
@@ -62,28 +63,41 @@ interface EachResult{
     url:string
 }
 
+
+export class SortPokemon{
+    static sortAllPokemon = (eachPoke:any) =>{
+        pokemonCollect.push(eachPoke);
+        pokemonCollect.sort(function (a:any, b:any) { return a.id - b.id });
+    }
+}
+
 export class GenerateTypeToDOM {
     static generateTypesToDOM = (type:EachResult) => {
         if(type?.name && type?.name !== 'unknown' && type?.name !== 'shadow'){
-            const container = document.querySelector(".sortType__container")! as HTMLElement;
+            const sortSection = document.querySelector(".sortType__container")! as HTMLElement;
             const typeElement = document.createElement("div");
             typeElement.setAttribute("class", `sortType__${type?.name} sortType__type`)
             typeElement.addEventListener('click', function(e){
                 const pokemonSection = document.querySelector(".pokemon")! as HTMLElement;
-
                 switchTypeForCoverFunc(type);
                 pokemonSection.innerHTML = "";
-                
+
                 fetch(type?.url)
                 .then(res => res.json())
                 .then(data => {
                    if(data.pokemon && Array.isArray(data.pokemon)){
                        const oneTypePokemon = [...data.pokemon];
-                        oneTypePokemon.forEach((ele)=>{
+                        oneTypePokemon.forEach((ele, index)=>{
                             fetch(ele.pokemon.url)
                             .then(response => response.json())
                             .then(eachPoke =>{
-                                GenerateView.sortData('type', eachPoke);
+
+                                SortPokemon.sortAllPokemon(eachPoke);
+                                if(oneTypePokemon.length === index + 1){
+                                    new GeneratePokemonToDOM(pokemonCollect)
+                                    pokemonCollect.length = 0;
+                                }
+
                             })
                         })
                    }
@@ -91,7 +105,7 @@ export class GenerateTypeToDOM {
             })
     
             typeElement.textContent = type?.name;
-            container.appendChild(typeElement);
+         sortSection.appendChild(typeElement);
         }
     }
 }
@@ -99,7 +113,7 @@ export class GenerateTypeToDOM {
 export class GenerateColorToDOM{
    static generateColorsToDOM = (color:EachResult) =>{
     if(color?.name){
-    const container = document.querySelector(".sortType__container")! as HTMLElement;
+    const sortSection = document.querySelector(".sortType__container")! as HTMLElement;
     const typeElement = document.createElement("div");
     typeElement.setAttribute("class", `sortType__${color?.name} sortType__type`)
     typeElement.addEventListener('click', function(e){
@@ -112,19 +126,24 @@ export class GenerateColorToDOM{
            if(data.pokemon_species && Array.isArray(data.pokemon_species)){
                const oneTypePokemon = [...data.pokemon_species];
 
-                oneTypePokemon.forEach((ele)=>{
+                oneTypePokemon.forEach((ele, index)=>{
                     const modificateURL = GenerateColorToDOM.modificateUrl(ele.url);
                     fetch(modificateURL)
                     .then(response => response.json())
                     .then(eachPoke =>{
-                        GenerateView.sortData('color', eachPoke);
+
+                        SortPokemon.sortAllPokemon(eachPoke);
+                        if(oneTypePokemon.length === index + 1){
+                            new GeneratePokemonToDOM(pokemonCollect)
+                            pokemonCollect.length = 0;
+                        }
                     })
                 })
            }
         })
     });
     typeElement.textContent = color?.name;
-    container.appendChild(typeElement);
+    sortSection.appendChild(typeElement);
     }
 }
 
@@ -133,4 +152,31 @@ static modificateUrl = (url:string):string => {
 const splitUrl = url.split("/");
 return `${splitUrl[0]}//${splitUrl[2]}/${splitUrl[3]}/${splitUrl[4]}/pokemon/${splitUrl[6]}`;
 }
+}
+
+export class GenerateGeneralToDOM {
+    
+    static generateGeneralToDOM = (type:EachResult, index:number) => {
+        if(type?.name){
+                fetch(type?.url)
+                .then(res => res.json())
+                .then(eachPoke => {
+                    SortPokemon.sortAllPokemon(eachPoke);
+                    if(index === 11){
+                        const sortSection = document.querySelector(".sortType__container")! as HTMLElement;
+                        
+                        if(sortSection.childElementCount === 0){
+                            const searchTemplate = document.querySelector(".searchTemplate")! as HTMLTemplateElement;
+                            const importedNode = document.importNode(searchTemplate.content, true);
+                            const putThisElement = importedNode.firstElementChild as HTMLDivElement;
+                            sortSection.insertAdjacentElement("afterbegin", putThisElement);
+                        }
+
+                    
+                        new GeneratePokemonToDOM(pokemonCollect);
+                        pokemonCollect.length = 0;
+                    }
+                })
+        }
+    }
 }

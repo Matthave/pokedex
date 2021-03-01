@@ -1,4 +1,5 @@
-import {GenerateView, rangeOfLoading, currentGeneratedPokemon} from "./app";
+import { GenerateView, rangeOfLoading } from "./app";
+import { pokemonCollect } from "./generateToDOM";
 export enum MenuItem {TYPE='type', GENERAL='general', COLOR='color', GAME='game'};
 
 
@@ -23,7 +24,7 @@ export class MenuItemEffect{
         }
         typesSection.innerHTML = "";
         rangeOfLoading.from = 0;
-        currentGeneratedPokemon.length = 0;
+        pokemonCollect.length = 0;
     }
 
     clickEffect = (element:string) => {
@@ -43,7 +44,6 @@ export class MenuItemEffect{
             this.showNavElements(pokedexSection, navWrapper, coverMouse, nav, navCircle, navInnerCircle, navLine, navElement, cover);
         }
     }
-
 
     hideNavElements = (element:string, navElement: Element[],nav: HTMLElement,navCircle: HTMLElement,navInnerCircle: HTMLElement,navLine: HTMLElement,navWrapper: HTMLElement,coverMouse: HTMLElement,pokedexSection: HTMLElement, cover:HTMLElement) => {
         navElement.forEach((ele)=>{

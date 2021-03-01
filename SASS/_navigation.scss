@@ -15,6 +15,7 @@
     &--hide{
         height: 75px;
         min-height: 0px;
+        z-index: 3;
     }
     
     @include mq(medium){
