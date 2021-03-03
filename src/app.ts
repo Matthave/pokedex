@@ -4,6 +4,7 @@ import { MenuItemEffect, MenuItem } from './navigation';
 export const rangeOfLoading = {
     from:0,
     howMany:12,
+    type:""
 }
 
 export class GenerateView{
@@ -44,7 +45,20 @@ export class GenerateView{
         loadMorePokemon = () => {
             rangeOfLoading.from = rangeOfLoading.from + 12;
             new PokemonGet(this.typeSort, rangeOfLoading.from, rangeOfLoading.howMany);
+
+                window.addEventListener('scroll', GenerateView.scrollFeature, { passive: true })
         }
+
+        static scrollFeature = () => {
+                 document.querySelector('.pokemonSection__loadMore')?.classList.add('pokemonSection__loadMore--disable');
+                     const scrollHeight = window.scrollY;
+                     if ((window.innerHeight + scrollHeight) >= document.body.scrollHeight) {
+                         setTimeout(() => {
+                             rangeOfLoading.from = rangeOfLoading.from + 12;
+                             new PokemonGet('general', rangeOfLoading.from, rangeOfLoading.howMany);
+                         }, 400);
+                     }
+         }
 
         static setTitle = (type:string) => {
         const sectionTitle = document.querySelector(".sortType__title")!;

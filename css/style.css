@@ -12,6 +12,8 @@ body { position: relative; background-image: url("/images/bg_white.svg"); backgr
 
 .coverMouse--hide { height: 75px; z-index: 4; }
 
+.coverMouse--showMouse { cursor: auto; }
+
 .coverMouse__type { -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; height: 50%; background-color: rgba(20, 100, 30, 0); }
 
 .coverMouse__general { width: 150px; height: 50%; background-color: rgba(100, 20, 76, 0); }
@@ -30,7 +32,7 @@ body { position: relative; background-image: url("/images/bg_white.svg"); backgr
 
 ::-webkit-scrollbar-thumb:hover { background: #F73636; }
 
-.navWrapper { position: fixed; width: 100%; min-width: 350px; height: 100vh; min-height: 825px; background-color: rgba(0, 0, 0, 0.85); -webkit-transition: 0.3s; transition: 0.3s; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+.navWrapper { position: fixed; width: 100%; min-width: 350px; height: 100vh; min-height: 640px; background-color: rgba(0, 0, 0, 0.85); -webkit-transition: 0.3s; transition: 0.3s; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
 .navWrapper--hide { height: 75px; min-height: 0px; z-index: 3; }
 
@@ -108,6 +110,14 @@ body { position: relative; background-image: url("/images/bg_white.svg"); backgr
   .circle__innerCircle--hide { width: 15px; height: 15px; border: 2px solid #fff; }
   .circle__innerCircle--active { border-color: #fff !important; } }
 
+.escape { position: absolute; bottom: 20px; left: calc(100% - 20px); -webkit-transform: translate(-100%, -50%); transform: translate(-100%, -50%); display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 50px; height: 50px; border: 2px solid #fff; border-radius: 10px; font-size: 12px; color: #fff; -webkit-transition: 0.3s; transition: 0.3s; }
+
+@media (min-width: 800px) { .escape { left: calc(100% - 35px); } }
+
+@media (min-width: 1024px) { .escape { left: calc(100% - 50px); } }
+
+.escape--disable { opacity: 0; }
+
 .type__icon, .general__icon, .color__icon, .game__icon { -webkit-transform-origin: center; transform-origin: center; -webkit-transition: 0.3s; transition: 0.3s; }
 
 .type__icon--active, .general__icon--active, .color__icon--active, .game__icon--active { width: 50px; }
@@ -177,6 +187,8 @@ body { position: relative; background-image: url("/images/bg_white.svg"); backgr
 .pokemon__type { width: 75px; border-radius: 5px; padding: 1.5px 5px; margin: 0 2.5px; text-transform: capitalize; font-family: 'Pragati Narrow', sans-serif; color: #fff; }
 
 .pokemon__id { position: absolute; top: 5px; left: 10px; margin-top: 5px; font-size: 11px; color: #444; }
+
+.pokemon__dummyText { text-align: center; }
 
 .pokemonSection__loadMore { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; width: 200px; height: 45px; background-color: #30A7D7; border-radius: 5px; margin: 10px 0px; cursor: pointer; font-size: 16px; color: #fff; }
 

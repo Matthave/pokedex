@@ -57,6 +57,10 @@ justify-content: center;
   z-index: 4;
 }
 
+&--showMouse{
+  cursor: auto;
+}
+
   &__type{
     flex-grow: 1;
     height: 50%;

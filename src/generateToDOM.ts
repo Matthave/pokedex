@@ -1,6 +1,8 @@
 import {switchTypeForCoverFunc, switchForPokemonTypeFunc} from "./utils/switchType";
+import { FilterPokemonCollect } from "./utils/searchPokemon";
 
 export const pokemonCollect:Element[] = [];
+export const pokemonCollectInGeneral:Element[] = [];
 
 export class GeneratePokemonToDOM{
     constructor(allPokemon:Element[]){
@@ -68,6 +70,9 @@ export class SortPokemon{
     static sortAllPokemon = (eachPoke:any) =>{
         pokemonCollect.push(eachPoke);
         pokemonCollect.sort(function (a:any, b:any) { return a.id - b.id });
+
+        pokemonCollectInGeneral.push(eachPoke);
+        pokemonCollectInGeneral.sort(function (a:any, b:any) { return a.id - b.id });
     }
 }
 
@@ -170,6 +175,7 @@ export class GenerateGeneralToDOM {
                             const importedNode = document.importNode(searchTemplate.content, true);
                             const putThisElement = importedNode.firstElementChild as HTMLDivElement;
                             sortSection.insertAdjacentElement("afterbegin", putThisElement);
+                            new FilterPokemonCollect();
                         }
 
                     

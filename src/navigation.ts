@@ -6,16 +6,24 @@ export enum MenuItem {TYPE='type', GENERAL='general', COLOR='color', GAME='game'
 export class MenuItemEffect{
     constructor(element: string){
         const coverElement = document.querySelector(`.coverMouse__${element}`)! as HTMLDivElement;
- 
+
+        if(element === 'general'){
+            window.addEventListener('keyup', function(e){
+                if(e.which === 27){
+                document.querySelector('.coverMouse')?.classList.toggle('coverMouse--showMouse')
+                }
+            })
+        }
+
         coverElement.addEventListener('mouseover', ()=> this.hoverEffect(element,'over'));
         coverElement.addEventListener('mouseleave', ()=> this.hoverEffect(element, 'leave'));
         coverElement.addEventListener('click', ()=> this.clickEffect(element));
-
     }
 
     clearPokemonSectionBeforeGenerate = (element:string):void =>{
         const pokemonSection = document.querySelector(".pokemon")! as HTMLElement;
         const typesSection = document.querySelector(".sortType__container")! as HTMLElement;
+        window.removeEventListener('scroll', GenerateView.scrollFeature, { capture: false });
 
         if(element === MenuItem.GENERAL){
             pokemonSection.innerHTML = "";
@@ -24,6 +32,7 @@ export class MenuItemEffect{
         }
         typesSection.innerHTML = "";
         rangeOfLoading.from = 0;
+        rangeOfLoading.type = element;
         pokemonCollect.length = 0;
     }
 
@@ -71,11 +80,13 @@ export class MenuItemEffect{
 
             if(element === MenuItem.GENERAL){
                 loadMoreButton.classList.remove("pokemonSection__loadMore--disable");
+
             }else{
                 loadMoreButton.classList.add("pokemonSection__loadMore--disable");
             }
 
             GenerateView.initialGenerate(element);
+            document.querySelector('.escape')?.classList.add('escape--disable')
     }
 
     showNavElements = (pokedexSection: HTMLElement,navWrapper: HTMLElement,coverMouse: HTMLElement,nav: HTMLElement,navCircle: HTMLElement,navInnerCircle: HTMLElement,navLine: HTMLElement,navElement:Element[], cover:HTMLElement) => {
@@ -102,7 +113,7 @@ export class MenuItemEffect{
                 ele.classList.remove("nav__option--hide");
             })
         }, 750);
-
+        document.querySelector('.escape')?.classList.remove('escape--disable')
     }
 
     hoverEffect = (element:string, eventType:string): void => {
