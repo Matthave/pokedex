@@ -106,78 +106,78 @@ export function switchTypeForCoverFunc(type:EachResult){
 }
 
 
-export function switchForPokemonTypeFunc(ele:any, pokemonType:HTMLElement){
+export function switchForPokemonTypeFunc(ele:any, pokemonType:HTMLElement, className: string){
     switch(ele.type.name){
         case TypeOfPokemon.GRASS:
-            pokemonType.setAttribute("class",  `${TypeOfPokemon.GRASS} pokemon__type`)
+            pokemonType.setAttribute("class",  `${TypeOfPokemon.GRASS} ${className}`)
         break;
 
         case TypeOfPokemon.WATER:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.WATER} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.WATER} ${className}`)
         break;
 
         case TypeOfPokemon.FIRE:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.FIRE} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.FIRE} ${className}`)
         break;
 
         case TypeOfPokemon.BUG:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.BUG} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.BUG} ${className}`)
         break;
 
         case TypeOfPokemon.POISON:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.POISON} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.POISON} ${className}`)
         break;
 
         case TypeOfPokemon.ELECTRIC:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.ELECTRIC} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.ELECTRIC} ${className}`)
         break;
 
         case TypeOfPokemon.NORMAL:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.NORMAL} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.NORMAL} ${className}`)
         break;
 
         case TypeOfPokemon.FLYING:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.FLYING} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.FLYING} ${className}`)
         break;
 
         case TypeOfPokemon.ROCK:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.ROCK} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.ROCK} ${className}`)
         break;
 
         case TypeOfPokemon.GROUND:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.GROUND} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.GROUND} ${className}`)
         break;
 
         case TypeOfPokemon.PSYCHIC:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.PSYCHIC} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.PSYCHIC} ${className}`)
         break;
         
         case TypeOfPokemon.FIGHTING:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.FIGHTING} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.FIGHTING} ${className}`)
         break;
         
         case TypeOfPokemon.DRAGON:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.DRAGON} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.DRAGON} ${className}`)
         break;
         
         case TypeOfPokemon.DARK:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.DARK} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.DARK} ${className}`)
         break;
         
         case TypeOfPokemon.FAIRY:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.FAIRY} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.FAIRY} ${className}`)
         break;
         
         case TypeOfPokemon.GHOST:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.GHOST} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.GHOST} ${className}`)
         break;
 
         case TypeOfPokemon.ICE:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.ICE} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.ICE} ${className}`)
         break;
         
         case TypeOfPokemon.STEEL:
-            pokemonType.setAttribute("class", `${TypeOfPokemon.STEEL} pokemon__type`)
+            pokemonType.setAttribute("class", `${TypeOfPokemon.STEEL} ${className}`)
         break;
         default:
             return;

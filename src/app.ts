@@ -15,6 +15,13 @@ export class GenerateView{
         //Inicial addEventListener for loadMoreBtn
         const loadBtn = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
         loadBtn.addEventListener('click', ()=> this.loadMorePokemon());
+
+        const closeDetails = document.querySelector('.details__closeBtn')! as HTMLElement;
+        closeDetails.addEventListener('click', function(){
+            const details = document.querySelector('.details')! as HTMLElement;
+            document.body.style.overflow = 'auto';
+            details.classList.remove('details--onPosition');
+        })
     }
 
         static initialGenerate = (typeOfSort: string) => {

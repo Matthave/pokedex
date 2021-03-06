@@ -17,7 +17,9 @@ export class GeneratePokemonToDOM{
                 const pokemonImg = document.createElement('img');
                 const typeContainer = document.createElement('div');
                 newCard.setAttribute("class","pokemon__card");
-    
+                newCard.addEventListener('click', ()=> this.pokemonDetails(pokemon))
+
+
                 pokemonName.setAttribute("class", "pokemon__name");
                 pokemonName.textContent = pokemon.name;
                 newCard.appendChild(pokemonName);
@@ -44,7 +46,7 @@ export class GeneratePokemonToDOM{
                         const pokemonType = document.createElement("p");
                         pokemonType.textContent = `${ele.type.name}`;
 
-                        switchForPokemonTypeFunc(ele, pokemonType);
+                        switchForPokemonTypeFunc(ele, pokemonType, 'pokemon__type');
 
                         typeContainer.appendChild(pokemonType);
                     });
@@ -57,6 +59,67 @@ export class GeneratePokemonToDOM{
                 const pokemonSection = document.querySelector('.pokemon')! as HTMLElement;
                 pokemonSection.insertAdjacentElement('beforeend', newCard);
         })
+    }
+
+
+    pokemonDetails = (pokemon:any) => {
+        console.log(pokemon);
+        document.body.style.overflow = 'hidden';
+        const detailsElement = document.querySelector('.details')! as HTMLElement;
+        if(detailsElement){
+            detailsElement.classList.add('details--onPosition');
+
+            const nameContent = document.querySelector(".details__pokemonName")! as HTMLDivElement;
+            const imgContent = document.querySelector(".details__imgContent")! as HTMLImageElement;
+            const descContent = document.querySelector(".details__descriptionContent")! as HTMLDivElement;
+            const statsContent = document.querySelector(".details__statsContent")! as HTMLDivElement;
+            const typeContent = document.querySelector(".details__typeContent")! as HTMLDivElement;
+            
+            let pokemonOrder = "";
+            if(pokemon.id < 10) pokemonOrder = `#00${pokemon.id}`;
+            if(pokemon.id >= 10 && pokemon.id < 100) pokemonOrder = `#0${pokemon.id}`;
+            if(pokemon.id >= 100) pokemonOrder = `#${pokemon.id}`;
+
+            nameContent.innerHTML = `${pokemon.name} <span class="details__id">${pokemonOrder}</span>`;
+            imgContent.setAttribute("src", `${pokemon.sprites.other['official-artwork'].front_default}`);
+
+            //Desc content generate
+            descContent.innerHTML = "";
+            const detailHeight = document.createElement('div');
+            detailHeight.setAttribute('class', 'details__Date pokemonDate')
+            detailHeight.innerHTML = `<p class="pokemonDate__label">Height</p><p class="pokemonDate__value">${pokemon.height}'</p>`;
+            const detailWeight = document.createElement('div');
+            detailWeight.setAttribute('class', 'details__Date pokemonDate')
+            detailWeight.innerHTML = `<p class="pokemonDate__label">Weight</p><p class="pokemonDate__value">${pokemon.weight} lbs</p>`;
+            descContent.insertAdjacentElement('beforeend', detailHeight);
+            descContent.insertAdjacentElement('beforeend', detailWeight);
+            
+            
+            const pokemonAbilitiesArray = [...pokemon.abilities];
+            const detailAbilities = document.createElement('div');
+            detailAbilities.setAttribute('class', 'details__Date pokemonDate');
+            const titleAbilities = document.createElement('p');
+            titleAbilities.setAttribute('class', 'pokemonDate__label');
+            titleAbilities.textContent = "Abilities";
+            detailAbilities.insertAdjacentElement('beforeend', titleAbilities);
+            pokemonAbilitiesArray.forEach((abilityEle)=>{
+                const currentAbility = document.createElement('p');
+                currentAbility.setAttribute('class', 'pokemonDate__value');
+                currentAbility.textContent = abilityEle.ability.name;
+                detailAbilities.insertAdjacentElement('beforeend', currentAbility);
+            })
+            descContent.insertAdjacentElement('beforeend', detailAbilities);
+
+            // Type content generate
+            typeContent.innerHTML = "";
+            const pokemonTypesArray = [...pokemon.types];
+            pokemonTypesArray.forEach((abilityEle)=>{
+                const currentType = document.createElement('p');
+                currentType.textContent = abilityEle.type.name;
+                switchForPokemonTypeFunc(abilityEle, currentType, 'details__type');
+                typeContent.insertAdjacentElement('beforeend', currentType);
+            })
+        }
     }
 }
 

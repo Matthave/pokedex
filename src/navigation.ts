@@ -113,6 +113,9 @@ export class MenuItemEffect{
                 ele.classList.remove("nav__option--hide");
             })
         }, 750);
+        const detailsElement = document.querySelector('.details')! as HTMLElement;
+        detailsElement.classList.remove('details--onPosition');
+        document.body.style.overflow = 'auto';
         document.querySelector('.escape')?.classList.remove('escape--disable')
     }
 
