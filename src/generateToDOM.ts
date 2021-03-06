@@ -119,6 +119,35 @@ export class GeneratePokemonToDOM{
                 switchForPokemonTypeFunc(abilityEle, currentType, 'details__type');
                 typeContent.insertAdjacentElement('beforeend', currentType);
             })
+
+            // Stats generate
+            enum MaxStatsValue {HP = 255, ATTACK = 181, DEFENSE = 230, SATTACK = 173, SDEFENSE = 230, SPEED = 200};
+            const percentageHP =`${((pokemon.stats[0].base_stat / MaxStatsValue.HP) * 100).toFixed(2)}%` 
+            const percentageATT =`${((pokemon.stats[1].base_stat / MaxStatsValue.ATTACK) * 100).toFixed(2)}%` 
+            const percentageDEF =`${((pokemon.stats[2].base_stat / MaxStatsValue.DEFENSE) * 100).toFixed(2)}%` 
+            const percentageSATT =`${((pokemon.stats[3].base_stat / MaxStatsValue.SATTACK) * 100).toFixed(2)}%` 
+            const percentageSDEF =`${((pokemon.stats[4].base_stat / MaxStatsValue.SDEFENSE) * 100).toFixed(2)}%` 
+            const percentageSPEED =`${((pokemon.stats[5].base_stat / MaxStatsValue.SPEED) * 100).toFixed(2)}%` 
+
+            setTimeout(() => {
+                const barHP = document.querySelector(".stats__barHp")! as HTMLElement;
+                barHP.style.height = `${percentageHP}`;
+    
+                const barATT = document.querySelector(".stats__barAttack")! as HTMLElement;
+                barATT.style.height = `${percentageATT}`;
+    
+                const barDEF = document.querySelector(".stats__barDefense")! as HTMLElement;
+                barDEF.style.height = `${percentageDEF}`;
+    
+                const barSATT = document.querySelector(".stats__barSAttack")! as HTMLElement;
+                barSATT.style.height = `${percentageSATT}`;
+    
+                const barSDEF = document.querySelector(".stats__barSDefense")! as HTMLElement;
+                barSDEF.style.height = `${percentageSDEF}`;
+    
+                const barSPEED = document.querySelector(".stats__barSpeed")! as HTMLElement;
+                barSPEED.style.height = `${percentageSPEED}`;
+            }, 1500);
         }
     }
 }

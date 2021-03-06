@@ -17,6 +17,23 @@ export class PokemonGet{
         this.colorAPI = `https://pokeapi.co/api/v2/pokemon-color/`;
         this.allPokemon = [];
 
+        // //TEST
+        //     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=898`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         const resultsCopy = [...data.results];
+        //         resultsCopy.forEach((ele)=>{
+        //             fetch(ele.url)
+        //             .then(res => res.json())
+        //             .then(eachPoke => {
+        //                 pokemonCollect.push(eachPoke);
+        //                 pokemonCollect.sort(function (a:any, b:any) { return b.stats[5].base_stat - a.stats[5].base_stat });
+        //                 console.log(pokemonCollect)
+        //             })
+        //         })
+        //     })
+        // //TEST
+
         switch(typeOfSort){
             case MenuItem.TYPE:
                 this.getColorOrTypeFunc(this.typeAPI, MenuItem.TYPE);
