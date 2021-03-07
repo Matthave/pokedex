@@ -12,6 +12,7 @@ export class FilterPokemonCollect{
     static buttonClickHandler = (e:any) => {
         const pokemonSection = document.querySelector(".pokemon")! as HTMLElement;
         const input = document.querySelector('.form__input')! as HTMLInputElement;
+        const loadMoreButton = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
         const searchingElement = input.value;
 
         if(e === 'click' || e.which === 13){
@@ -20,7 +21,7 @@ export class FilterPokemonCollect{
                 fetch(API)
                 .then(res => res.json())
                 .then(pokemon => {
-                    const loadMoreButton = document.querySelector(".pokemonSection__loadMore")! as HTMLButtonElement;
+
                     loadMoreButton.classList.add("pokemonSection__loadMore--disable");
     
                     const pokeArr = [];
@@ -34,6 +35,7 @@ export class FilterPokemonCollect{
                 rangeOfLoading.from = 0;
                 pokemonSection.innerHTML = "";
                 GenerateView.initialGenerate('general');
+                loadMoreButton.classList.remove("pokemonSection__loadMore--disable");
             }
         }
     }

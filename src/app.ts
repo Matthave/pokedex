@@ -19,12 +19,14 @@ export class GenerateView{
         const closeDetails = document.querySelector('.details__closeBtn')! as HTMLElement;
         closeDetails.addEventListener('click', function(){
             const details = document.querySelector('.details')! as HTMLElement;
+            const evoContainer = document.querySelector('.evo')! as HTMLDivElement;
             const allStatsBar = [...document.querySelectorAll('.stats__bar')! as any];
             allStatsBar.forEach((ele)=>{
                 ele.style.height = '0%';
             })
             document.body.style.overflow = 'auto';
             details.classList.remove('details--onPosition');
+            evoContainer.innerHTML = '<div class="evoCover"></div>';
         })
     }
 

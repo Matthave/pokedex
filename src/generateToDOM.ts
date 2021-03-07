@@ -1,5 +1,6 @@
 import {switchTypeForCoverFunc, switchForPokemonTypeFunc} from "./utils/switchType";
 import { FilterPokemonCollect } from "./utils/searchPokemon";
+import  { GenerateDetails } from "./utils/generateDetails"
 
 export const pokemonCollect:Element[] = [];
 export const pokemonCollectInGeneral:Element[] = [];
@@ -17,7 +18,7 @@ export class GeneratePokemonToDOM{
                 const pokemonImg = document.createElement('img');
                 const typeContainer = document.createElement('div');
                 newCard.setAttribute("class","pokemon__card");
-                newCard.addEventListener('click', ()=> this.pokemonDetails(pokemon))
+                newCard.addEventListener('click', ()=> GenerateDetails.pokemonDetails(pokemon))
 
 
                 pokemonName.setAttribute("class", "pokemon__name");
@@ -59,96 +60,6 @@ export class GeneratePokemonToDOM{
                 const pokemonSection = document.querySelector('.pokemon')! as HTMLElement;
                 pokemonSection.insertAdjacentElement('beforeend', newCard);
         })
-    }
-
-
-    pokemonDetails = (pokemon:any) => {
-        console.log(pokemon);
-        document.body.style.overflow = 'hidden';
-        const detailsElement = document.querySelector('.details')! as HTMLElement;
-        if(detailsElement){
-            detailsElement.classList.add('details--onPosition');
-
-            const nameContent = document.querySelector(".details__pokemonName")! as HTMLDivElement;
-            const imgContent = document.querySelector(".details__imgContent")! as HTMLImageElement;
-            const descContent = document.querySelector(".details__descriptionContent")! as HTMLDivElement;
-            const statsContent = document.querySelector(".details__statsContent")! as HTMLDivElement;
-            const typeContent = document.querySelector(".details__typeContent")! as HTMLDivElement;
-            
-            let pokemonOrder = "";
-            if(pokemon.id < 10) pokemonOrder = `#00${pokemon.id}`;
-            if(pokemon.id >= 10 && pokemon.id < 100) pokemonOrder = `#0${pokemon.id}`;
-            if(pokemon.id >= 100) pokemonOrder = `#${pokemon.id}`;
-
-            nameContent.innerHTML = `${pokemon.name} <span class="details__id">${pokemonOrder}</span>`;
-            imgContent.setAttribute("src", `${pokemon.sprites.other['official-artwork'].front_default}`);
-
-            //Desc content generate
-            descContent.innerHTML = "";
-            const detailHeight = document.createElement('div');
-            detailHeight.setAttribute('class', 'details__Date pokemonDate')
-            detailHeight.innerHTML = `<p class="pokemonDate__label">Height</p><p class="pokemonDate__value">${pokemon.height}'</p>`;
-            const detailWeight = document.createElement('div');
-            detailWeight.setAttribute('class', 'details__Date pokemonDate')
-            detailWeight.innerHTML = `<p class="pokemonDate__label">Weight</p><p class="pokemonDate__value">${pokemon.weight} lbs</p>`;
-            descContent.insertAdjacentElement('beforeend', detailHeight);
-            descContent.insertAdjacentElement('beforeend', detailWeight);
-            
-            
-            const pokemonAbilitiesArray = [...pokemon.abilities];
-            const detailAbilities = document.createElement('div');
-            detailAbilities.setAttribute('class', 'details__Date pokemonDate');
-            const titleAbilities = document.createElement('p');
-            titleAbilities.setAttribute('class', 'pokemonDate__label');
-            titleAbilities.textContent = "Abilities";
-            detailAbilities.insertAdjacentElement('beforeend', titleAbilities);
-            pokemonAbilitiesArray.forEach((abilityEle)=>{
-                const currentAbility = document.createElement('p');
-                currentAbility.setAttribute('class', 'pokemonDate__value');
-                currentAbility.textContent = abilityEle.ability.name;
-                detailAbilities.insertAdjacentElement('beforeend', currentAbility);
-            })
-            descContent.insertAdjacentElement('beforeend', detailAbilities);
-
-            // Type content generate
-            typeContent.innerHTML = "";
-            const pokemonTypesArray = [...pokemon.types];
-            pokemonTypesArray.forEach((abilityEle)=>{
-                const currentType = document.createElement('p');
-                currentType.textContent = abilityEle.type.name;
-                switchForPokemonTypeFunc(abilityEle, currentType, 'details__type');
-                typeContent.insertAdjacentElement('beforeend', currentType);
-            })
-
-            // Stats generate
-            enum MaxStatsValue {HP = 255, ATTACK = 181, DEFENSE = 230, SATTACK = 173, SDEFENSE = 230, SPEED = 200};
-            const percentageHP =`${((pokemon.stats[0].base_stat / MaxStatsValue.HP) * 100).toFixed(2)}%` 
-            const percentageATT =`${((pokemon.stats[1].base_stat / MaxStatsValue.ATTACK) * 100).toFixed(2)}%` 
-            const percentageDEF =`${((pokemon.stats[2].base_stat / MaxStatsValue.DEFENSE) * 100).toFixed(2)}%` 
-            const percentageSATT =`${((pokemon.stats[3].base_stat / MaxStatsValue.SATTACK) * 100).toFixed(2)}%` 
-            const percentageSDEF =`${((pokemon.stats[4].base_stat / MaxStatsValue.SDEFENSE) * 100).toFixed(2)}%` 
-            const percentageSPEED =`${((pokemon.stats[5].base_stat / MaxStatsValue.SPEED) * 100).toFixed(2)}%` 
-
-            setTimeout(() => {
-                const barHP = document.querySelector(".stats__barHp")! as HTMLElement;
-                barHP.style.height = `${percentageHP}`;
-    
-                const barATT = document.querySelector(".stats__barAttack")! as HTMLElement;
-                barATT.style.height = `${percentageATT}`;
-    
-                const barDEF = document.querySelector(".stats__barDefense")! as HTMLElement;
-                barDEF.style.height = `${percentageDEF}`;
-    
-                const barSATT = document.querySelector(".stats__barSAttack")! as HTMLElement;
-                barSATT.style.height = `${percentageSATT}`;
-    
-                const barSDEF = document.querySelector(".stats__barSDefense")! as HTMLElement;
-                barSDEF.style.height = `${percentageSDEF}`;
-    
-                const barSPEED = document.querySelector(".stats__barSpeed")! as HTMLElement;
-                barSPEED.style.height = `${percentageSPEED}`;
-            }, 1500);
-        }
     }
 }
 

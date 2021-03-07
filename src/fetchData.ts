@@ -58,24 +58,6 @@ export class PokemonGet{
         }
     }
 
-    // getGeneralFunc = (API:string, typeOfSort:string) =>{
-    //     fetch(API)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         data.results.forEach((pokemon:EachResult)=>{
-    //                 fetch(pokemon.url)
-    //                 .then(res => res.json())
-    //                 .then(eachPoke => {
-    //                     this.allPokemon.push(eachPoke);
-    //                     GenerateView.sortData(typeOfSort, eachPoke);
-    //                 } )
-    //                 .catch((err)=>{
-    //                     console.log("ERROR", err)
-    //                 })
-    //         })
-    //     })
-    // }
-
     getColorOrTypeFunc = (API:string, APIType:string) => {
         fetch(API)
         .then(response => response.json())
