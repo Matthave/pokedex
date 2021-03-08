@@ -24,6 +24,7 @@
                 </div>
                 <div class="nav__line"></div>
             </div>
+            <div class="escape">ESC</div>
         </div>
 <!-- Circle Menu --->
 
@@ -33,11 +34,148 @@
                 <div class="sortType__container">
                 </div>
             </div>
+
             <div class="pokemonSection">
                 <div class="pokemon"></div>
                 <button class="pokemonSection__loadMore">See more Pokémon</button>
             </div>
+        </section>
 
+        <section class="details">
+            <div class="details__closeBtn close">
+                <div class="close__bar close__barOne"></div>
+                <div class="close__bar close__barTwo"></div>
+            </div>
+            <div class="details__wrapper">
+                <p class="details__pokemonName"></p>
+                <img class="details__imgContent"/>
+                <div class="details__descAndTypeWrapper">
+                    <div class="details__descriptionContent"></div>
+                    <div class="details__typeContent"></div>
+                </div>
+                <div class="details__statsAndEvoWrapper">
+                    <div class="details__statsContent stats">
+                        <p class="stats__title">Stats</p>
+                        <div class="stats__Item">
+                            <ul class="stats__ul">
+                                <div class="stats__bar stats__barHp"></div>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                            </ul>
+                            <p class="stats__label">HP</p>
+                        </div>
+                        <div class="stats__Item">
+                             <ul class="stats__ul">
+                                <div class="stats__bar stats__barAttack"></div>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                            </ul>
+                            <p class="stats__label">Attack</p>
+                        </div>
+                        <div class="stats__Item">
+                             <ul class="stats__ul">
+                                <div class="stats__bar stats__barDefense"></div>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                            </ul>
+                            <p class="stats__label">Defense</p>
+                        </div>
+                        <div class="stats__Item">
+                             <ul class="stats__ul">
+                                <div class="stats__bar stats__barSAttack"></div>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                            </ul>
+                            <p class="stats__label">S. Att</p>
+                        </div>
+                        <div class="stats__Item">
+                             <ul class="stats__ul">
+                                <div class="stats__bar stats__barSDefense"></div>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                            </ul>
+                            <p class="stats__label">S. Def</p>
+                        </div>
+                        <div class="stats__Item">
+                             <ul class="stats__ul">
+                                <div class="stats__bar stats__barSpeed"></div>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                                <li class="stats__li"></li>
+                            </ul>
+                            <p class="stats__label">Speed</p>
+                        </div>
+                    </div>
+                    <div class="details__evoContent evo">
+                        <div class="evoCover"></div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -54,9 +192,10 @@
 <!-- Templates -->
 <template class="searchTemplate">
     <div class="form">
-        <input type="text" class="form__input">
+        <input type="text" class="form__input" placeholder="Name or ID">
         <button class="form__btn">Search</button>
     </div>
 </template>
+<script type="module" src="./dist/bundle.js"></script>
 </body>
 </html>
