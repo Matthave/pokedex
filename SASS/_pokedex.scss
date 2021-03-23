@@ -93,11 +93,14 @@
 
     &__card{
         position: relative;
+        top:-25px;
 
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        transform-origin: center;
+        opacity:0;
 
         width:175px;
         background-color: #dedede;
@@ -105,10 +108,22 @@
         text-align: center;
         margin: 10px 15px;
         padding: 15px 5px;
+        overflow: hidden;
         cursor: pointer;
+        transition: 0.3s;
+
+        &--afterEffect{
+            opacity:1;
+            top:0;
+        }
 
         @include mq(medium){
-            width: 235px;
+            width:235px;
+
+            &--afterEffect{
+                opacity:1;
+                top:0;
+            }
         }
 
         &:hover{

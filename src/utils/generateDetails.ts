@@ -9,7 +9,18 @@ interface EachPokemon{
     }
 }
 
+interface StatsObjInterface{
+    percentageHP: string,
+    percentageATT: string,
+    percentageDEF: string,
+    percentageSATT: string,
+    percentageSDEF: string,
+    percentageSPEED: string
+}
+
 export class GenerateDetails{
+    static statsObj:StatsObjInterface;
+
     static pokemonDetails = (pokemon:any) => {
         document.body.style.overflow = 'hidden';
         const detailsElement = document.querySelector('.details')! as HTMLElement;
@@ -84,7 +95,28 @@ export class GenerateDetails{
         const percentageSDEF =`${((pokemon.stats[4].base_stat / MaxStatsValue.SDEFENSE) * 100).toFixed(2)}%` 
         const percentageSPEED =`${((pokemon.stats[5].base_stat / MaxStatsValue.SPEED) * 100).toFixed(2)}%` 
 
-        setTimeout(() => {
+        const statsObj = {
+            percentageHP,
+            percentageATT,
+            percentageDEF,
+            percentageSATT,
+            percentageSDEF,
+            percentageSPEED
+        }
+
+        GenerateDetails.statsObj = statsObj;
+
+        const detailWrapper = document.querySelector('.details')! as HTMLElement;
+        detailWrapper.addEventListener('scroll', GenerateDetails.showStats, { passive: true });
+    }
+
+    static showStats = () =>{
+        const detailWrapper = document.querySelector('.details')! as HTMLElement;
+        const statsElement = document.querySelector('.stats')! as HTMLDivElement;
+        const windowHeight = window.innerHeight;
+        const statsElementFromTop = statsElement.getBoundingClientRect().top;
+        const { percentageHP, percentageATT, percentageDEF, percentageSATT, percentageSDEF, percentageSPEED} = GenerateDetails.statsObj;
+        if(statsElementFromTop <= (windowHeight/2)){
             const barHP = document.querySelector(".stats__barHp")! as HTMLElement;
             barHP.style.height = `${percentageHP}`;
 
@@ -102,8 +134,9 @@ export class GenerateDetails{
 
             const barSPEED = document.querySelector(".stats__barSpeed")! as HTMLElement;
             barSPEED.style.height = `${percentageSPEED}`;
-        }, 2500);
 
+            detailWrapper.removeEventListener('scroll', GenerateDetails.showStats, { capture: false });
+        }
     }
 
     static generateEvolutionContent = (pokemon: any) => {
@@ -159,7 +192,11 @@ export class GenerateDetails{
             const evoContainer = document.querySelector('.evo')! as HTMLDivElement;
             const firstEvoContainer = document.createElement('div');
             firstEvoContainer.setAttribute('class', `evo__item evo__${whichEvo}Evo`);
-            console.log(pokemonData);
+            firstEvoContainer.addEventListener('click', function(){
+                const evo = document.querySelector('.evo')! as HTMLDivElement;
+                evo.innerHTML = '<div class="evoCover"></div>';
+                GenerateDetails.pokemonDetails(pokemonData);
+            })
             const pokemonName = pokemonData.name;
             let pokemonId;
             if(pokemonData.id < 10) pokemonId = `#00${pokemonData.id}`;

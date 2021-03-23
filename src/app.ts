@@ -69,7 +69,7 @@ export class GenerateView{
                          setTimeout(() => {
                              rangeOfLoading.from = rangeOfLoading.from + 12;
                              new PokemonGet('general', rangeOfLoading.from, rangeOfLoading.howMany);
-                         }, 400);
+                         }, 200);
                      }
          }
 

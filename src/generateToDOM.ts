@@ -59,6 +59,18 @@ export class GeneratePokemonToDOM{
                 newCard.setAttribute('id', `${pokemon.id}`);
                 const pokemonSection = document.querySelector('.pokemon')! as HTMLElement;
                 pokemonSection.insertAdjacentElement('beforeend', newCard);
+
+        //After insert element
+        const appearEffect = () =>{
+            const eachPokemonCard = document.querySelectorAll('.pokemon__card');
+            eachPokemonCard.forEach((ele: any)=>{
+                    ele.classList.add('class', 'pokemon__card--afterEffect');
+            })
+        }
+        setTimeout(() => {
+            appearEffect();
+        }, 750);
+
         })
     }
 }
