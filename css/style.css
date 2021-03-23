@@ -1,6 +1,6 @@
 * { margin: 0; padding: 0; border: 0; outline: transparent; font-family: 'Roboto Condensed', sans-serif; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-body { position: relative; background-image: url("../images/bg_white.svg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; height: 100vh; min-height: 825px; }
+body { position: relative; background-image: url("/images/bg_white.svg"); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; height: 100vh; min-height: 825px; }
 
 .app { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
@@ -337,7 +337,7 @@ body { position: relative; background-image: url("../images/bg_white.svg"); back
 
 @media (min-width: 1024px) { .stats__li { height: 17px; } }
 
-.evo { position: relative; background-image: url("../images/bg_white.svg"); background-repeat: no-repeat; background-position: center; background-size: cover; background-attachment: fixed; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; height: auto; min-height: 300px; padding: 25px; }
+.evo { position: relative; background-image: url("/images/bg_white.svg"); background-repeat: no-repeat; background-position: center; background-size: cover; background-attachment: fixed; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; height: auto; min-height: 300px; padding: 25px; }
 
 .evo__item { position: relative; z-index: 1; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; width: 290px; height: 290px; background-color: transparent; cursor: pointer; }
 
