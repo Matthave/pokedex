@@ -1,7 +1,7 @@
 # Technologies that have been used:
 Java Script,
 TypeScript,
-Webpack
+Webpack,
 CSS - under SASS/SCSS control
 
 You can find the API that I used to get all the Pokemon data on this page: https://pokeapi.co/
