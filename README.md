@@ -4,8 +4,10 @@ TypeScript,
 Webpack,
 CSS - under SASS/SCSS control
 
+## API
 You can find the API that I used to get all the Pokemon data on this page: https://pokeapi.co/
 
+## Description
 This is a project, heavily modeled on the official Pokemon website, specifically the PokeDex tab: https://www.pokemon.com/us/pokedex/
 
 You can search for any of the 898 pokemon from different pokemon series, use the name of the pokemon or its ID number.
